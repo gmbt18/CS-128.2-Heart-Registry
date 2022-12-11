@@ -83,12 +83,15 @@ class Record(models.Model):
     unit_after = models.CharField(blank=True,null=True,max_length=50)
     remarks = models.CharField(blank=True,null=True,max_length=200)
 
+    category = models.CharField(blank=True,null=True,max_length=50)
+    procedure = models.CharField(blank=True,null=True,max_length=50)
+
     # many-to-many fields
     angiographer = models.ManyToManyField(Angiographer)
     anesthesiologist = models.ManyToManyField(Anesthesiologist)
     nurse = models.ManyToManyField(Nurse)
-    category = models.ManyToManyField(Category)
-    procedure = models.ManyToManyField(Procedure)
+    # category = models.ManyToManyField(Category)
+    # procedure = models.ManyToManyField(Procedure)
 
     # unsure
     tpi = models.CharField(blank=True,null=True,max_length=50)

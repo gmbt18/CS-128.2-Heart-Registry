@@ -7,7 +7,7 @@ from .models import Record
 
 
 #Filtering the records
-class RecordFilter(django_filters.FilterSet):
+class RecordFilters(django_filters.FilterSet):
 
     date = DateFilter(field_name='date', lookup_expr='month', initial=timezone.now)
     date_year = DateFilter(field_name='date',lookup_expr='year', initial=timezone.now)

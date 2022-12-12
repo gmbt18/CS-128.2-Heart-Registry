@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+
+    <title>Heart Registry</title>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container-fluid">
+          <a class="navbar-brand" href="#">Navbar</a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+              <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="#">Home</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">Features</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">Pricing</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link disabled">Disabled</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+      <div class="container-fluid p-5">
+        <button class="btn btn-danger btn-lg dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+            2022
+        </button>
+        <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="#">2021</a></li>
+            <li><a class="dropdown-item" href="#">2020</a></li>
+            <li><a class="dropdown-item" href="#">2019</a></li>
+        </ul>
+        <br>
+        <br>
+        <nav>
+            <div class="nav nav-tabs" id="nav-tab" role="tablist">
+              <button class="nav-link active" id="nav-home-tab" data-bs-toggle="tab" data-bs-target="#nav-home" type="button" role="tab" aria-controls="nav-home" aria-selected="true">December</button>
+              <button class="nav-link" id="nav-profile-tab" data-bs-toggle="tab" data-bs-target="#nav-profile" type="button" role="tab" aria-controls="nav-profile" aria-selected="false">November</button>
+              <button class="nav-link" id="nav-contact-tab" data-bs-toggle="tab" data-bs-target="#nav-contact" type="button" role="tab" aria-controls="nav-contact" aria-selected="false">October</button>
+            </div>
+          </nav>
+          <div class="tab-content" id="nav-tabContent" style="width: 100%; overflow-x: auto; overflow-y: hidden;">
+            <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
+                
+                <br>
+                <table width="100%" class="table table-bordered table-fixed">
+                    <thead>
+                      <tr class="border-bottom">
+                        <th style="width:300px">
+                            <span style="width: 20%;">#</span>
+                        </th>
+                        <th>
+                            <span class="ml-2">DATE</span>
+                        </th>
+                        <th>
+                            <span class="ml-2">HOSPITAL</span>
+                        </th>
+                        <th>
+                            <span class="ml-2">PATIENT'S NAME</span>
+                        </th>
+                        <th>
+                            <span class="ml-4">SEX</span>
+                        </th>
+                        <th>
+                            <span class="ml-4">UNIT</span>
+                        </th>
+                        <th>
+                            <span class="ml-4">CAT</span>
+                        </th>
+                        <th>
+                            <span class="ml-4">SWAB</span>
+                        </th>
+                        <th>
+                            <span class="ml-4">PATHWAY</span>
+                        </th>
+                        <th colspan="2">
+                            <span class="ml-4">SCHEDULE TIME</span>
+                        </th>
+                        <th>
+                            <span class="ml-4">RECEIVED</span>
+                        </th>
+                        <th>
+                            <span class="ml-4">STARTED</span>
+                        </th>
+                        <th>
+                            <span class="ml-4">PREOP</span>
+                        </th>
+                        <th>
+                            <span class="ml-4">COD</span>
+                        </th>
+                        <th>
+                            <span class="ml-4">ER DOOR</span>
+                        </th>
+                        <th>
+                            <span class="ml-4">ACTI</span>
+                        </th>
+                        <th>
+                            <span class="ml-4">WIRING</span>
+                        </th>
+                        <th>
+                            <span class="ml-4">BALLOON</span>
+                        </th>
+                        <th>
+                            <span class="ml-4">DTW</span>
+                        </th>
+                        <th>
+                            <span class="ml-4">DTB</span>
+                        </th>
+                        <th>
+                            <span class="ml-4">DX</span>
+                        </th>
+                        <th>
+                            <span class="ml-4">ANGIOGRAPHER</span>
+                        </th>
+                        <th>
+                            <span class="ml-4">ANESTHESIOLOGIST</span>
+                        </th>
+                        <th>
+                            <span class="ml-4">PROCEDURE</span>
+                        </th>
+                        <th>
+                            <span class="ml-4">ENDED</span>
+                        </th>
+                        <th>
+                            <span class="ml-4">ENDORSED</span>
+                        </th>
+                        <th>
+                            <span class="ml-4">INTRA</span>
+                        </th>
+                        <th>
+                            <span class="ml-4">UNIT</span>
+                        </th>
+                        <th>
+                            <span class="ml-4">REMARKS</span>
+                        </th>
+                        <th>
+                            <span class="ml-4">NURSE</span>
+                        </th>
+                        <th>
+                            <span class="ml-4">TPI</span>
+                        </th>
+                        <th>
+                            <span class="ml-4">POST</span>
+                        </th>
+                        <th>
+                            <span class="ml-4">CVL</span>
+                        </th>
+                        <th>
+                            <span class="ml-4">RADIATION DOSE</span>
+                        </th>
+                        <th>
+                            <span class="ml-4">AMOUNT OF DYE</span>
+                        </th>
+                        <th>
+                            <span class="ml-4">NUMBER OF BALLOONS</span>
+                        </th>
+                        <th>
+                            <span class="ml-4">NUMBER OF STENTS</span>
+                        </th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr class="border-bottom">
+                        <td>
+                            <div class="p-2">
+                                <span class="d-block font-weight-bold">1</span>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="p-2">
+                                <span class="d-block font-weight-bold">12/12/22</span>
+                            </div>                  
+                        </td>
+                        <td>
+                            <input class="form-control form-control-sm" type="text" placeholder="" aria-label=".form-control-sm example">
+                        </td>
+                        <td>
+                            <input class="form-control form-control-sm" type="text" placeholder="" aria-label=".form-control-sm example">
+                        </td>
+                        <td>
+                            <button type="button" class="btn btn-danger dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown" aria-expanded="false">
+                                <span class="visually-hidden">Toggle Dropdown</span>
+                              </button>
+                              <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" href="#">F</a></li>
+                                <li><a class="dropdown-item" href="#">M</a></li>
+                              </ul>
+                        </td>
+                        <td>
+                            <div class="p-2 d-flex flex-column">
+                                <span>APW2</span>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="p-2 d-flex flex-column">
+                                <span>PDP</span>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="p-2 d-flex flex-column">
+                                <span>NEGATIVE</span>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="p-2 d-flex flex-column">
+                                <span>X</span>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="p-2 d-flex flex-column">
+                                <span>1</span>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="p-2 d-flex flex-column">
+                                <span>2</span>
+                            </div>
+                        </td>
+                        
+                      </tr>
+                      
+                    </tbody>
+                </table>
+            </div>
+            <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">...</div>
+            <div class="tab-pane fade" id="nav-contact" role="tabpanel" aria-labelledby="nav-contact-tab">...</div>
+          </div>
+        
+      </div>
+    
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+</body>
+</html>

@@ -30,14 +30,13 @@
                     <li class="nav-item">
                         <a class="nav-link active" aria-current="page" href="{% url 'indexPage' %}">Records</a>
                     </li>
+                    {% if request.user.user_type != 'None' %}
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Features</a>
+                        <a class="nav-link" href="#">Manage Users</a>
                     </li>
+                    {% endif %} 
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Pricing</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link disabled">Disabled</a>
+                        <a class="nav-link" href="#">Profile</a>
                     </li>
                 </ul>
             </div>

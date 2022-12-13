@@ -28,7 +28,7 @@ def records(request, year):
     record = Record.objects.filter(date__year = year)
     record_form = RecordForm(request.GET)
     month_today = datetime.now().month
-    years = allrecords.annotate(year=F('date__year'))
+    years = years = (set([r.date.year for r in allrecords]))
     months = record.annotate(month=F('date__month'))
     data = {
     'allrecords': allrecords, 

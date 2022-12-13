@@ -13,7 +13,7 @@
         </button>
         <ul class="dropdown-menu">
             {% for year in years %}
-            <li><a class="dropdown-item"  href="{% url 'records' year|date:'Y' %}" >{{year|date:"Y"}}</a></li>
+            <li><a class="dropdown-item"  href="{% url 'records' year %}" >{{year}}</a></li>
             {% endfor %}
         </ul>
         <br>
@@ -21,9 +21,9 @@
         <nav>
             <div class="nav nav-tabs" id="nav-tab" role="tablist">
                 {% for month in months %}
-                <button class="nav-link text-danger {% if month_today|stringformat:'02d' == month|date:'m' %}active{%elif forloop.first%}active{% endif %}" id="{{month|date:'m'}}"
+                <button class="nav-link text-danger {% if month_today|stringformat:'02d' == month|date:'m' %}active{%elif forloop.first%}{% endif %}" id="{{month|date:'m'}}"
                     data-bs-toggle="tab" data-bs-target="#{{month|date:'m'}}" type="button" role="tab" aria-controls="{{month|date:'m'}}"
-                    aria-selected="{% if month_today|stringformat:'02d' == month|date:'m' %}true{%endif%}">{{month|date:"F"}}</button>
+                    aria-selected="{% if month_today|stringformat:'02d' == month|date:'m' %}true{%elif forloop.first%}true{%endif%}">{{month|date:"F"}}</button>
                 {% endfor %}
             </div>
         </nav>

@@ -47,6 +47,10 @@ def loginPage(request):
         context = {}
         return render(request, 'accounts/login.html', context)
 
+def logoutPage(request):
+    logout(request)
+    return redirect('loginPage')
+
 # Create function for user edit account
 def editUserPage(request):
     form = EditUserForm()

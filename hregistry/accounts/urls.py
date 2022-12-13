@@ -21,7 +21,8 @@ from . import views
 
 urlpatterns = [
     path('',views.indexPage, name="indexPage"),
-    path('login',views.loginPage, name="loginPage")
+    path('login',views.loginPage, name="loginPage"),
+    path('logout',views.logoutPage, name="logoutPage")
 ]
 
 if settings.DEBUG:

@@ -5,14 +5,20 @@ from django.contrib.auth import authenticate, login, logout ,update_session_auth
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponse
 from django.urls import reverse_lazy,reverse
+import calendar
 
 from datetime import datetime
-from django.db.models import F
 from .models import *
 from .forms import *
 
 from accounts.models import *
 from accounts.views import indexPage, loginPage
+
+from django.template.defaulttags import register
+
+@register.filter
+def get_item(dictionary, key):
+    return dictionary.get(key)
 
 #redirects to the current year at the start of the page
 @login_required(login_url='loginPage')
@@ -34,14 +40,28 @@ def records(request, year):
     record = Record.objects.filter(date__year = year)
     record_form = RecordForm(request.GET)
     month_today = datetime.now().month
-    years = years = (set([r.date.year for r in allrecords]))
-    months = record.annotate(month=F('date__month'))
+    years = (set([r.date.year for r in allrecords]))
+    months = {
+        1:'January',
+        2:'February',
+        3:'March',
+        4:'April',
+        5:'May',
+        6:'June',
+        7:'July',
+        8:'August',
+        9:'September',
+        10:'October',
+        11:'November',
+        12:'December',
+        }
+
     data = {
     'allrecords': allrecords, 
     'records':record, 
     'record_form' : record_form, 
     'years':years, 
-    'months' : months, 
+    'months' : months,
     'active_year' : year, 
     'month_today':month_today}
     return render(request, 'patients/records.html', data)

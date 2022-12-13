@@ -32,7 +32,7 @@
                 aria-labelledby="{{month|date:'m'}}">
                 <br>
                 
-                <table width="10000px" style="white-space:nowrap; text-align: center; " class="table table-bordered table-fixed align-middle">
+                <table width="" style="white-space:nowrap; text-align: center; " class="table table-bordered table-fixed align-middle">
                     <thead >
                       <tr class="border-bottom">
                         <th scope="row" class = "not-important">
@@ -209,9 +209,9 @@
                             <td>
                                 <i type="button" data-bs-toggle="modal" data-bs-target="#view{{record.id}}"
                                     class="bi bi-eye-fill"></i>
-                                <i type="button" data-bs-toggle="modal" data-bs-target="#edit"
+                                <i type="button" data-bs-toggle="modal" data-bs-target="#edit{{record.id}}"
                                     class="bi bi-pencil-square"></i>
-                                <i type="button" data-bs-toggle="modal" data-bs-target="#delete"
+                                <i type="button" data-bs-toggle="modal" data-bs-target="#delete{{record.id}}"
                                     class="bi bi-trash-fill"></i>
                             </td>
                         </tr>
@@ -402,6 +402,23 @@
                                     </div>
                                     <div class="modal-footer">
                                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal fade" id="delete{{record.id}}" tabindex="-1" aria-labelledby="deletemodal" aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="exampleModalLabel">Delete Record</h5>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                    </div>
+                                    <div class="modal-body">
+                                        Are you sure you want to delete this record?
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                                        <a type="button" class="btn btn-danger" href="{% url 'removeRecord' record.id %}">Delete</a>
                                     </div>
                                 </div>
                             </div>

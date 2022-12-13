@@ -1,0 +1,26 @@
+{% load crispy_forms_tags %}
+
+<form method="POST" action="" novalidate>
+{% csrf_token %}       
+
+    <div class="modal-header">
+        <h5 class="modal-title ms-1" id="exampleModalLabel">Edit User</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+    </div>
+
+    <div class="modal-body">
+        {{form.first_name | as_crispy_field}} 
+        {{form.last_name | as_crispy_field}}
+        {{form.username| as_crispy_field}}
+        {{form.email| as_crispy_field}}
+        
+    </div>
+
+    <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="submit" class="btn btn-success" data-bs-dismiss="modal" id="edit">Submit</button>
+    </div>
+
+</form>
+
+

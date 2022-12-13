@@ -32,7 +32,7 @@
                     <li class="nav-item">
                         <a class="nav-link active" aria-current="page" href="{% url 'indexPage' %}">Records</a>
                     </li>
-                    {% if request.user.user_type == 'None' %}
+                    {% if request.user.user_type == None %}
                     <li class="nav-item">
                         <a class="nav-link" href="{% url 'manageUsers' %}">Manage Users</a>
                     </li>

@@ -13,7 +13,10 @@ from accounts.models import *
 # Create your views here.
 def records(request):
     record = Record.objects.all()
-    data = {'records':record}
+    record_form = RecordForm(request.GET)
+    years = (set([r.date.year for r in record]))
+    months = sorted(set([r.date.month for r in record]),reverse=True)
+    data = {'records':record, 'record_form' : record_form, 'years':years, 'months' : months}
     return render(request, 'patients/records.html', data)
 # Create function for adding patient
 def addRecordPage(request):

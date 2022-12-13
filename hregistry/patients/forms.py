@@ -15,6 +15,11 @@ class RecordForm(ModelForm):
     # nurse = ModelChoiceField(queryset=Staff.objects.filter(user_type=1))
     # anesthesiologist = ModelChoiceField(queryset=Staff.objects.filter(user_type=3))
     # angiographer = ModelChoiceField(queryset=Staff.objects.filter(user_type=4))
+    date = forms.DateField(
+        widget=forms.TextInput(
+            attrs={'type' : 'date'}
+        )
+    )
 
     class Meta:
         model = Record

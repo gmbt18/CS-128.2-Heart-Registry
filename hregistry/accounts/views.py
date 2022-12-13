@@ -44,7 +44,7 @@ def loginPage(request):
 
             if user is not None:
                 login(request, user)
-                return redirect('records')
+                return redirect('indexPage')
 
         context = {}
         return render(request, 'accounts/login.html', context)

@@ -69,6 +69,7 @@ def addRecordPage(request):
 def removeRecord(request, id):
     record = Record.objects.get(id=id)
     record.delete()
+    return redirect('indexPage')
 
 # Create function for editing patient details
 def editRecordPage(request, id):

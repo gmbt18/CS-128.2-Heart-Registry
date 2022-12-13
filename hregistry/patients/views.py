@@ -11,6 +11,7 @@ from .forms import *
 from accounts.models import *
 
 # Create your views here.
+@login_required(login_url='loginPage')
 def records(request):
     record = Record.objects.all()
     data = {'records':record}

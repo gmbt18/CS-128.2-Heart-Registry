@@ -2,14 +2,16 @@ from multiprocessing import context
 from django.shortcuts import render, redirect
 from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout ,update_session_auth_hash
+from django.contrib.auth.models import Group
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponse
 
 from .models import *
 from .forms import *
 
-
 # Create your views here.
+def indexPage(request):
+    return redirect(loginPage)
 
 # Create function for user registration
 def registerUserPage(request):
@@ -30,9 +32,9 @@ def registerUserPage(request):
 # Create function for user signup
 def loginPage(request):
     if request.user.is_authenticated:
-        return redirect('index')
+        return redirect('records')
     else:
-        if request.method == "GET":
+        if request.method == "POST":
             username = request.POST.get('username')
             password = request.POST.get('password')
 
@@ -40,11 +42,10 @@ def loginPage(request):
 
             if user is not None:
                 login(request, user)
-                return redirect('index')
+                return redirect('records')
 
         context = {}
-
-    return redirect(request)
+        return render(request, 'accounts/login.html', context)
 
 # Create function for user edit account
 def editUserPage(request):

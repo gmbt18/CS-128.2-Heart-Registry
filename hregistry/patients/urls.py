@@ -19,9 +19,10 @@ from . import views
 
 from django.conf.urls.static import static
 from django.conf import settings
-from . import views
+from accounts.views import *
+
 urlpatterns = [
-    path('records', views.records, name="records")
+    path('records', views.records, name="records"),
 ]
 
 if settings.DEBUG:

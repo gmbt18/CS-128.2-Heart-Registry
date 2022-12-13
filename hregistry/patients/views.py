@@ -19,6 +19,8 @@ def indexPage(request):
     return redirect(reverse_lazy('records',kwargs={'year':year}))
 
 # Create your views here.
+
+@login_required(login_url='loginPage')
 def records(request, year):
     allrecords = Record.objects.all()
     record = Record.objects.filter(date__year = year)
@@ -35,6 +37,7 @@ def records(request, year):
     'active_year' : year, 
     'month_today':month_today}
     return render(request, 'patients/records.html', data)
+    
 # Create function for adding patient
 def addRecordPage(request):
     form = RecordForm()

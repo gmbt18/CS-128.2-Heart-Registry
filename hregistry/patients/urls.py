@@ -21,7 +21,8 @@ from django.conf.urls.static import static
 from django.conf import settings
 from . import views
 urlpatterns = [
-    path('records', views.records, name="records")
+    path('records', views.records, name="records"),
+    path('export-to-csv', views.exportToCSV, name="export_to_csv")
 ]
 
 if settings.DEBUG:

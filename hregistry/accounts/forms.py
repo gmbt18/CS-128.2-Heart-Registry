@@ -13,5 +13,5 @@ class CreateUserForm(UserCreationForm):
 class EditUserForm(UserChangeForm):
     class Meta:
         model = AuthUser
-        fields = ['first_name', 'last_name', 'username', 'email', 'password']
+        fields = ['first_name', 'last_name', 'username', 'email']
         

@@ -19,10 +19,15 @@ from . import views
 
 from django.conf.urls.static import static
 from django.conf import settings
-from . import views
+from accounts.views import *
+
 urlpatterns = [
     path('records', views.records, name="records"),
-    path('export-to-csv', views.exportToCSV, name="export_to_csv")
+    path('export-to-csv', views.exportToCSV, name="export_to_csv"),
+    path('',views.indexPage, name="indexPage"),
+    path('records/<int:year>', views.records, name="records"),
+    path('records/edit/<str:id>',views.editRecordPage,name="editRecord"),
+    path('records/delete/<str:id>', views.removeRecord, name="removeRecord"),
 ]
 
 if settings.DEBUG:

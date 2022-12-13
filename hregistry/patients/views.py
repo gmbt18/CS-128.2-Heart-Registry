@@ -3,21 +3,75 @@ from django.shortcuts import render, redirect
 from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout ,update_session_auth_hash
 from django.contrib.auth.decorators import login_required
-from django.http import HttpResponse
+from django.http import HttpResponse,HttpResponseRedirect
+from django.urls import reverse_lazy,reverse
 
+
+from bootstrap_modal_forms.generic import BSModalDeleteView
+
+from datetime import datetime
 from .models import *
 from .forms import *
 
 from accounts.models import *
+from accounts.views import indexPage, loginPage
+
+from django.template.defaulttags import register
+
+@register.filter
+def get_item(dictionary, key):
+    return dictionary.get(key)
+
+#redirects to the current year at the start of the page
+@login_required(login_url='loginPage')
+def indexPage(request):
+    year = datetime.now().year
+    return redirect(reverse_lazy('records',kwargs={'year':year}))
 
 import csv
 
 # Create your views here.
-def records(request):
-    record = Record.objects.all()
-    data = {'records':record}
+
+@login_required(login_url='loginPage')
+def records(request, year):
+
+    if request.method == "POST":
+        form = RecordForm(request.POST)
+        if form.is_valid:
+            form.save()
+
+    allrecords = Record.objects.all()
+    record = Record.objects.filter(date__year = year)
+    record_form = RecordForm(request.GET)
+    month_today = datetime.now().month
+    years = (set([r.date.year for r in allrecords]))
+    months = {
+        1:'January',
+        2:'February',
+        3:'March',
+        4:'April',
+        5:'May',
+        6:'June',
+        7:'July',
+        8:'August',
+        9:'September',
+        10:'October',
+        11:'November',
+        12:'December',
+        }
+
+    data = {
+    'allrecords': allrecords, 
+    'records':record, 
+    'record_form' : record_form, 
+    'years':years, 
+    'months' : months,
+    'active_year' : year, 
+    'month_today':month_today}
     return render(request, 'patients/records.html', data)
+    
 # Create function for adding patient
+# can be removed? kasi nasa modal na naman yung pag add
 def addRecordPage(request):
     form = RecordForm()
 
@@ -27,7 +81,7 @@ def addRecordPage(request):
         if form.is_valid():
             form.save()
 
-        return redirect('index')
+        return redirect('indexPage')
     
     context = {'form': form}
     return render(request, context)
@@ -36,21 +90,22 @@ def addRecordPage(request):
 def removeRecord(request, id):
     record = Record.objects.get(id=id)
     record.delete()
+    return redirect('indexPage')
 
-# Create function for editing patient details
+#edit record modal asynch
 def editRecordPage(request, id):
     record = Record.objects.get(id=id)
-    form = EditRecordForm(instance=record)
-
+    year = record.date.year
     if request.method == "POST":
         form = EditRecordForm(request.POST, instance=record)
 
         if form.is_valid():
             form.save()
-            return redirect("index", id=record.id)
-
-    context = {'record': record, 'form': form}
-    return render(request, context)
+        return HttpResponseRedirect(reverse_lazy('records',kwargs={'year':year}))
+    else:
+        form = EditRecordForm(instance=record)
+        context = {'form': form}
+        return render(request, 'patients/edit-record.html', context)
 
 # Create function for adding staff
 def addStaffPage(request):

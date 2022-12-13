@@ -1,0 +1,180 @@
+{% extends 'index.html' %}
+{% load static %}
+{% block title %}Manage Users{% endblock title %}
+{% load crispy_forms_tags %}
+
+
+
+{% block content %}
+<!--Modals-->
+<div class="modal fade" tabindex="-1" role="dialog" id="modal">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+    
+    </div>
+  </div>
+</div>
+
+<div class = "container w-90">
+  
+  <h2 class="py-4 px-4">Manage Users</h2>
+  <form method="POST" action="">
+    {% csrf_token %}
+    <div class="row">
+        <div class="col-md-4 ">
+            <label class="form-label">User Type</label>
+            <select class="form-select" id="role" name="role">
+                <option value="none">--------</option>
+                <option value="nurse">Nurse</option>
+                <option value="doctor">Doctor</option>
+                <option value="medtech">Medtech</option>
+                <option value="radtech">Radtech</option>
+            </select>
+            
+        </div>
+        <div class="col-md-4 mt-4 pt-2">
+          <button type="submit" class='btn btn-success'> Filter</button>
+        </div>
+    </div>
+  </form>
+    
+  <div class="d-flex flex-row-reverse bd-highlight">
+    <button class='btn btn-warning' data-bs-toggle="modal" data-bs-target="#addUser"><i class="fa-solid fa-plus"></i> Add User</button>
+  </div>
+  {% include "accounts/user-table.html" %}
+
+  <form method = "POST">
+    {% csrf_token %}
+    <div class="modal fade" id="addUser" tab-index="-1">
+        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+          <div class="modal-content">
+              <div class="modal-header">
+                  <h5>Add User</h5>
+                  <button type="button" class="btn btn-close" data-bs-dismiss="modal"></button>
+              </div>
+              <div class="modal-body">
+                
+                {{form.user_type | as_crispy_field}}
+                {{form.first_name | as_crispy_field}}   
+            
+          
+                {{form.last_name | as_crispy_field}}
+        
+      
+                {{form.username| as_crispy_field}}
+                
+    
+                {{form.email | as_crispy_field}}   
+        
+                {{form.password1 | as_crispy_field}}
+        
+        
+                {{form.password2 | as_crispy_field}}
+
+                     
+                 
+            
+              </div>
+              <div class="modal-footer">
+                  <!-- link to archive here -->
+                  <button class="btn btn-success" type='submit'>Add</button>
+                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"><i class="fa-solid fa-x"></i> Cancel</button>
+              </div>
+          </div>
+        </div>
+    </div> 
+  </form>
+    
+</div>
+
+
+
+{% endblock content %}
+
+{% block extrascripts %}
+<script type="text/javascript">
+  $(function() {
+    var asyncSuccessMessageUpdate = [
+      "<div ",
+      "style='position:fixed;top:0;z-index:10000;width:100%;border-radius:0;' ",
+      "class='alert alert-icon alert-success alert-dismissible fade show mb-0' role='alert'>",
+      "Success: User was updated.",
+      "<button type='button' class='close' data-dismiss='alert' aria-label='Close'>",
+      "<span aria-hidden='true'>&times;</span>",
+      "</button>",
+      "</div>",
+      "<script>",
+      "$('.alert').fadeTo(2000, 500).slideUp(500, function () {$('.alert').slideUp(500).remove();});",
+      "<\/script>"
+    ].join("");
+    
+    function deleteUserModalForm() {
+      $(".delete").each(function () {
+          $(this).modalForm({formURL: $(this).data("form-url"), isDeleteForm: true});
+      });
+    }
+    deleteUserModalForm();
+
+    function updateUserModalForm() {
+
+      $(".update").each(function () {
+
+        $(this).modalForm({
+          formURL: $(this).data("form-url"),
+          asyncUpdate: true,
+          asyncSettings: {
+            closeOnSubmit: false,
+            successMessage: asyncSuccessMessageUpdate,
+            dataUrl: "users/",
+            dataElementId: "#user-table",
+            dataKey: "table",
+            addModalFormFunction: reinstantiateModalForms
+          }
+        });
+      });
+    }
+    updateUserModalForm();
+
+    var asyncSuccessMessageChange = [
+      "<div ",
+      "style='position:fixed;top:0;z-index:10000;width:100%;border-radius:0;' ",
+      "class='alert alert-icon alert-success alert-dismissible fade show mb-0' role='alert'>",
+      "Success: Password was changed.",
+      "<button type='button' class='close' data-dismiss='alert' aria-label='Close'>",
+      "<span aria-hidden='true'>&times;</span>",
+      "</button>",
+      "</div>",
+      "<script>",
+      "$('.alert').fadeTo(2000, 500).slideUp(500, function () {$('.alert').slideUp(500).remove();});",
+      "<\/script>"
+    ].join("");
+
+
+    function updateUserPassModalForm() {
+        
+      $('.pass').each(function () {
+        $(this).modalForm({
+          formURL: $(this).data("form-url"),
+          asyncUpdate: true,
+          asyncSettings: {
+            closeOnSubmit: false,
+            successMessage: asyncSuccessMessageUpdate,
+            dataUrl: "users/",
+            dataElementId: "#user-table",
+            dataKey: "table",
+            addModalFormFunction: reinstantiateModalForms
+          }
+        });
+      }); 
+    
+    }
+    updateUserPassModalForm();
+
+    function reinstantiateModalForms(){
+      updateUserModalForm();
+      deleteUserModalForm();
+      updateUserPassModalForm();
+    }
+  })
+</script>
+{% endblock extrascripts %}

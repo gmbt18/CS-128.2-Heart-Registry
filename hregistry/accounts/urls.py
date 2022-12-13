@@ -15,13 +15,20 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-from . import views
-
 from django.conf.urls.static import static
 from django.conf import settings
+from . import views
 
 urlpatterns = [
-
+    path('login',views.loginPage, name="loginPage"),
+    path('logout',views.logOutPage, name="logoutPage"),
+    path('profile',views.viewProfile,name="viewProfile"),
+    path('profile/edit',views.editProfile,name="editProfile"),
+    path('profile/edit/change-pass',views.changeAdminPass,name="changeAdminPass"),
+    path('manage-users/',views.manageUsers, name='manageUsers'),
+    path('manage-users/edit/<int:pk>',views.editUser, name='editUser'),
+    path('manage-users/edit/change-pass/<int:pk>/',views.changePass,name='changePass'),
+     path('delete/<int:pk>',views.deleteUser.as_view(), name='deleteUser'),
 ]
 
 if settings.DEBUG:

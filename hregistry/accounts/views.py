@@ -5,9 +5,11 @@ from django.contrib.auth import authenticate, login, logout ,update_session_auth
 from django.contrib.auth.models import Group
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponse
+from django.urls import reverse_lazy,reverse
 
 from .models import *
 from .forms import *
+from datetime import datetime
 
 # Create your views here.
 def indexPage(request):
@@ -32,7 +34,8 @@ def registerUserPage(request):
 # Create function for user signup
 def loginPage(request):
     if request.user.is_authenticated:
-        return redirect('records')
+        year = datetime.now().year
+        return redirect(reverse_lazy('records',kwargs={'year':year}))
     else:
         if request.method == "POST":
             username = request.POST.get('username')
@@ -42,7 +45,8 @@ def loginPage(request):
 
             if user is not None:
                 login(request, user)
-                return redirect('records')
+                year = datetime.now().year
+                return redirect(reverse_lazy('records',kwargs={'year':year}))
 
         context = {}
         return render(request, 'accounts/login.html', context)

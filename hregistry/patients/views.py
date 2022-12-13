@@ -12,11 +12,12 @@ from .models import *
 from .forms import *
 
 from accounts.models import *
+from accounts.views import indexPage, loginPage
 
 #redirects to the current year at the start of the page
-def indexPage(request):
-    year = datetime.now().year
-    return redirect(reverse_lazy('records',kwargs={'year':year}))
+# def indexPage(request):
+#     year = datetime.now().year
+#     return redirect(reverse_lazy('records',kwargs={'year':year}))
 
 # Create your views here.
 

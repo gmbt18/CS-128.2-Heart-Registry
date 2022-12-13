@@ -1,19 +1,28 @@
 {% extends 'index.html' %}
 {% load static %}
+{% load crispy_forms_tags %}
 {% block title %}Health Registry{% endblock title %}
 
 
 {% block content %}
     <div class="container-fluid p-5">
-        <button class="btn btn-danger btn-lg dropdown-toggle" type="button" data-bs-toggle="dropdown"
-            aria-expanded="false">
-            {{ active_year }}
-        </button>
-        <ul class="dropdown-menu">
-            {% for year in years %}
-            <li><a class="dropdown-item"  href="{% url 'records' year %}" >{{year}}</a></li>
-            {% endfor %}
-        </ul>
+        <div class="row">
+            <div class="col">
+                <button class="btn btn-danger btn-lg dropdown-toggle" type="button" data-bs-toggle="dropdown"
+                    aria-expanded="false">
+                    {{ active_year }}
+                </button>
+                <ul class="dropdown-menu">
+                    {% for year in years %}
+                    <li><a class="dropdown-item"  href="{% url 'records' year %}" >{{year}}</a></li>
+                    {% endfor %}
+                </ul>
+            </div>
+
+            <div class="col-auto">
+                <a class="btn btn-danger btn-lg" data-bs-toggle="modal" data-bs-target="#add">Add Record</a>
+            </div>
+        </div>
         <br>
         <br>
         <nav>
@@ -444,6 +453,190 @@
         </div> -->
     </div>
     
+    <div class="modal fade" id="add" tabindex="-1" aria-labelledby="addmodal" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-scrollable modal-lg">
+            <form method="POST" action="" enctype = "multipart/form-data">
+                {% csrf_token %}
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Add a Record</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+
+                    <div class="modal-body p-3">
+                
+
+                        <div class="row">
+
+                            <div class='col-3'>
+                                {{record_form.date | as_crispy_field}}
+                            </div>
+                            <div class='col-3'>
+                                {{record_form.hospital | as_crispy_field}}
+                            </div>
+        
+                        </div>
+
+
+                        <div class="row">
+
+                            <div class="col-3">
+                                {{record_form.first_name | as_crispy_field}}
+                            </div>
+                            <div class="col-1">
+                                {{record_form.middle_initial | as_crispy_field}}
+                            </div>
+                            <div class="col-3">
+                                {{record_form.last_name | as_crispy_field}}
+                            </div>
+                            <div class="col-2">
+                                {{record_form.age | as_crispy_field}}
+                            </div>
+                            <div class="col-1">
+                                {{record_form.sex | as_crispy_field}}
+                            </div>
+
+                        </div>
+
+                        <br>
+
+                        <div class="row">
+
+                            <div class="col-3">
+                                {{record_form.unit_before | as_crispy_field}}
+                            </div>
+                            <div class="col-3">
+                                {{record_form.category | as_crispy_field}}
+                            </div>
+                            <div class="col-2">
+                                {{record_form.swab | as_crispy_field}}
+                            </div>
+
+                        </div>
+
+                        <br>
+
+                        <div class="row">
+
+                            <div class="col-2">
+                                {{record_form.pathway | as_crispy_field}}
+                            </div>
+                            <div class="col-2">
+                                {{record_form.is_emergency | as_crispy_field}}
+                            </div>
+                            <div class="col-3">
+                                {{record_form.schedule_time_from | as_crispy_field}}
+                            </div>
+                            <div class="col-3">
+                                {{record_form.schedule_time_to | as_crispy_field}}
+                            </div>
+
+                        </div>
+
+                        <br>
+
+                        <div class="row">
+
+                            <div class="col-2">
+                                {{record_form.received | as_crispy_field}}
+                            </div>
+                            <div class="col-2">
+                                {{record_form.started | as_crispy_field}}
+                            </div>
+                            <div class="col-2">
+                                {{record_form.er_door | as_crispy_field}}
+                            </div>
+                            <div class="col-2">
+                                {{record_form.acti | as_crispy_field}}
+                            </div>
+                            <div class="col-2">
+                                {{record_form.wiring | as_crispy_field}}
+                            </div>
+                            <div class="col-2">
+                                {{record_form.balloon | as_crispy_field}}
+                            </div>
+
+                        </div>
+
+                        <br><br>
+
+                        <div class="row">
+
+                            <div class="col-5">
+                                {{record_form.dx | as_crispy_field}}
+                            </div>
+                            <div class="col-5">
+                                {{record_form.procedure | as_crispy_field}}
+                            </div>
+
+                        </div>
+
+                        <br>
+
+                        <div class="row">
+
+                            <div class="col">
+                                {{record_form.angiographer | as_crispy_field}}
+                            </div>
+                            <div class="col">
+                                {{record_form.anesthesiologist | as_crispy_field}}
+                            </div>
+
+                        </div>
+
+                        <br>
+
+                        <div class="row">
+
+                            <div class="col-3">
+                                {{record_form.ended | as_crispy_field}}
+                            </div>
+                            <div class="col-3">
+                                {{record_form.endorsed | as_crispy_field}}
+                            </div>
+                            <div class="col-4">
+                                {{record_form.unit_after | as_crispy_field}}
+                            </div>
+
+                        </div>
+
+                        <br>
+
+                        <div class="row">
+
+                            <div class="col-9">
+                                {{record_form.remarks | as_crispy_field}}
+                            </div>
+                            <div class="col-2">
+                                {{record_form.tpi | as_crispy_field}}
+                            </div>
+
+                        </div>
+
+                        <br>
+
+                        <div class="row">
+
+                            <div class="col">
+                                {{record_form.nurse | as_crispy_field}}
+                            </div>
+
+                        </div>
+
+                        <br><br>
+        
+                    </div>
+                    
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="Submit" class="btn btn-danger">Save changes</button>
+                        {% comment %} <button type="button" class="btn btn-danger" href="{% url 'removeRecord' record.id %}>Save changes</button> {% endcomment %}
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
     <div class="modal fade" id="view" tabindex="-1" aria-labelledby="viewmodal" aria-hidden="true">
         <div class="modal-dialog modal-dialog-scrollable modal-xl">
             <div class="modal-content">

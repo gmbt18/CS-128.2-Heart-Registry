@@ -28,6 +28,39 @@ class RecordForm(ModelForm):
         'wiring', 'balloon', 'dx', 'ended', 'endorsed', 'unit_after', 'remarks', 'angiographer', 'anesthesiologist', 'nurse',
         'procedure', 'tpi']
 
+        labels = {
+            'date':'Date',
+            'hospital':'Hospital',
+            'first_name':'First Name',
+            'last_name':'Last Name',
+            'middle_initial':'M.I.',
+            'age':'Age',
+            'sex':'Sex',
+            'unit_before':'Unit Before',
+            'category':'Category',
+            'is_emergency':'Is Emergency',
+            'swab':'Swab Test',
+            'pathway':'Pathway',
+            'schedule_time_from':'Scheduled Time From',
+            'schedule_time_to':'Scheduled Time To',
+            'received':'Time Received',
+            'started':'Time Started',
+            'er_door':'ER Door',
+            'acti':'ACTI',
+            'wiring':'Wiring',
+            'balloon':'Balloon',
+            'dx':'DX',
+            'ended':'Ended',
+            'endorsed':'Endorsed',
+            'unit_after':'Unit After',
+            'remarks':'Remarks',
+            'angiographer':'Angiographer',
+            'anesthesiologist':'Anesthesiologist',
+            'nurse':'Nurse',
+            'procedure':'Procedure',
+            'tpi':'TPI',
+        }
+
 class EditRecordForm(ModelForm):
     # nurse = ModelChoiceField(queryset=Staff.objects.filter(user_type=1))
     # anesthesiologist = ModelChoiceField(queryset=Staff.objects.filter(user_type=3))

@@ -5,6 +5,8 @@
 
 {% block content %}
     <div class="container-fluid p-5">
+
+
         <button class="btn btn-danger btn-lg dropdown-toggle" type="button" data-bs-toggle="dropdown"
             aria-expanded="false">
             {{ active_year }}
@@ -19,7 +21,7 @@
         <nav>
             <div class="nav nav-tabs" id="nav-tab" role="tablist">
                 {% for month,month_name in months.items %}
-
+                
                 {%if active_year and month_today == month%}
                     <a class="nav-link text-danger active" id="{{month}}-tab"
                         data-bs-toggle="tab" data-bs-target="#{{month}}" type="button" role="tab" aria-controls="{{month}}"
@@ -54,7 +56,7 @@
             {%endif%}
                 <br>
                 
-                <table width="" style="white-space:nowrap; text-align: center; " class="table table-bordered table-fixed align-middle">
+                <table width="10000px" style="white-space:nowrap; text-align: center; " class="table table-bordered table-fixed align-middle">
                     <thead >
                       <tr class="border-bottom">
                         <th scope="row" class = "not-important">
@@ -231,216 +233,26 @@
                             <td>
                                 <i type="button" data-bs-toggle="modal" data-bs-target="#view{{record.id}}"
                                     class="bi bi-eye-fill"></i>
-                                <i type="button" data-bs-toggle="modal" data-bs-target="#edit{{record.id}}"
+                                <i type="button" data-bs-toggle="modal" data-bs-target="#edit"
                                     class="bi bi-pencil-square"></i>
-                                <i type="button" data-bs-toggle="modal" data-bs-target="#delete{{record.id}}"
+                                <i type="button" data-bs-toggle="modal" data-bs-target="#delete"
                                     class="bi bi-trash-fill"></i>
                             </td>
                         </tr>
 
                         <div class="modal fade" id="view{{record.id}}" tabindex="-1" aria-labelledby="viewmodal" aria-hidden="true">
-                            <div class="modal-dialog modal-dialog-scrollable modal-lg">
+                            <div class="modal-dialog modal-dialog-scrollable modal-xl">
                                 <div class="modal-content">
                                     <div class="modal-header">
-                                        <h5 class="modal-title" id="exampleModalLabel">View Details</h5>
+                                        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
                                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                     </div>
                                     <div class="modal-body">
-                                        <div class="row pb-2">
-                                            <div class="col md-6">
-                                                <b>Date: </b>{{ record.date }} 
-                                            </div>
-                                            <div class="col md-6">
-                                                <b>Balloon: </b>{{ record.balloon }}
-                                            </div>    
-                                        </div>
-
-                                        <div class="row pb-2">
-                                            <div class="col md-6">
-                                                <b>Patient's Name: </b> {{record.last_name}}, {{record.first_name}} {{record.middle_initial}}.
-                                            </div>
-                                            <div class="col md-6">
-                                                <b>DTW: </b>{{ record.dtw }}
-                                            </div>    
-                                        </div>
-
-                                        <div class="row pb-2">
-                                            <div class="col md-6">
-                                                <b>Hospital: </b>{{ record.hospital }}
-                                            </div>
-                                            <div class="col md-6">
-                                                <b>DTB: </b>{{ record.dtb }}
-                                            </div>    
-                                        </div>
-
-                                        <div class="row pb-2">
-                                            <div class="col md-6">
-                                                <b>Age: </b>{{ record.age }}
-                                            </div>
-                                            <div class="col md-6">
-                                                <b>DX: </b>{{ record.dx }}
-                                            </div>    
-                                        </div>
-
-                                        <div class="row pb-2">
-                                            <div class="col md-6">
-                                                <b>Sex: </b>{{ record.sex }}
-                                            </div>
-                                            <div class="col md-6">
-                                                <b>Angiographer: </b>
-                                                    {% for angiographer in record.angiographer.all %}
-                                                        {% if forloop.last %}
-                                                            {{angiographer}}
-                                                        {% else %}
-                                                            {{angiographer}},
-                                                        {% endif %}
-                                                    {% endfor %}
-                                            </div>    
-                                        </div>
-
-                                        <div class="row pb-2">
-                                            <div class="col md-6">
-                                                <b>Unit Before: </b>{{ record.unit_before }}
-                                            </div>
-                                            <div class="col md-6">
-                                                <b>Anesthesiologist: </b>
-                                                    {% for anesthesiologist in record.anesthesiologist.all %}
-                                                        {% if forloop.last %}
-                                                            {{anesthesiologist}}
-                                                        {% else %}
-                                                            {{anesthesiologist}},
-                                                        {% endif %}
-                                                    {% endfor %}
-                                            </div>    
-                                        </div>
-
-                                        <div class="row pb-2">
-                                            <div class="col md-6">
-                                                <b>Category: </b>{{ record.category }}
-                                            </div>
-                                            <div class="col md-6">
-                                                <b>Procedure: </b>{{ record.procedure }}
-                                            </div>    
-                                        </div>
-
-                                        <div class="row pb-2">
-                                            <div class="col md-6">
-                                                <b>SWAB: </b>{{ record.swab }}
-                                            </div>
-                                            <div class="col md-6">
-                                                <b>Ended: </b>{{ record.ended }}
-                                            </div>    
-                                        </div>
-
-                                        <div class="row pb-2">
-                                            <div class="col md-6">
-                                                <b>Pathway: </b>{{ record.pathway }}
-                                            </div>
-                                            <div class="col md-6">
-                                                <b>Endorsed: </b>{{ record.endorsed }}
-                                            </div>    
-                                        </div>
-
-                                        <div class="row pb-2">
-                                            <div class="col md-6">
-                                                <b>Schedule Time: </b>
-                                                    {% if record.is_emergency %} 
-                                                        {{record.is_emergency}} 
-                                                    {% else %}
-                                                        {{record.schedule_time_from}} to {{record.schedule_time_to}}
-                                                    {% endif %}
-                                            </div>
-                                            <div class="col md-6">
-                                                <b>Intra: </b>{{ record.intra }}
-                                            </div>    
-                                        </div>
-
-                                        <div class="row pb-2">
-                                            <div class="col md-6">
-                                                <b>Received: </b>{{ record.received }}
-                                            </div>
-                                            <div class="col md-6">
-                                                <b>Unit: </b>{{ record.unit_after }}                               
-                                            </div>    
-                                        </div>
-
-                                        <div class="row pb-2">
-                                            <div class="col md-6">
-                                                <b>Started: </b>{{ record.started }}
-                                            </div>
-                                            <div class="col md-6">
-                                                <b>Remarks: </b>{{ record.remarks }}
-                                            </div>    
-                                        </div>
-
-                                        <div class="row pb-2">
-                                            <div class="col md-6">
-                                                <b>PRE-OP: </b>{{ record.preop }}
-                                            </div>
-                                            <div class="col md-6">
-                                                <b>Nurse: </b>                                        
-                                                    {% for nurse in record.nurse.all %}
-                                                        {% if forloop.last %}
-                                                            {{nurse}}
-                                                        {% else %}
-                                                            {{nurse}},
-                                                        {% endif %}
-                                                    {% endfor %}
-                                            </div>    
-                                        </div>
-
-                                        <div class="row pb-2">
-                                            <div class="col md-6">
-                                                <b>COD: </b>{{ record.cod }}
-                                            </div>
-                                            <div class="col md-6">
-                                                <b>TPI: </b>{{ record.tpi }}
-                                            </div>    
-                                        </div>
-
-                                        <div class="row pb-2">
-                                            <div class="col md-6">
-                                                <b>ER Door: </b>{{ record.er_door }}
-                                            </div>
-                                            <div class="col md-6">
-                                                <b>Post: </b>{{ record.post }}
-                                            </div>    
-                                        </div>
-
-                                        <div class="row pb-2">
-                                            <div class="col md-6">
-                                                <b>Acti: </b>{{ record.acti }}
-                                            </div>
-                                            <div class="col md-6">
-                                                <b>CVL: </b>{{ record.cvl }}
-                                            </div>    
-                                        </div>
-
-                                        <div class="row pb-2">
-                                            <div class="col md-6">
-                                                <b>Wiring: </b>{{ record.wiring }}
-                                            </div>
-                                        </div>
+                                        {{ record.date }}
                                     </div>
                                     <div class="modal-footer">
                                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="modal fade" id="delete{{record.id}}" tabindex="-1" aria-labelledby="deletemodal" aria-hidden="true">
-                            <div class="modal-dialog">
-                                <div class="modal-content">
-                                    <div class="modal-header">
-                                        <h5 class="modal-title" id="exampleModalLabel">Delete Record</h5>
-                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                    </div>
-                                    <div class="modal-body">
-                                        Are you sure you want to delete this record?
-                                    </div>
-                                    <div class="modal-footer">
-                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-                                        <a type="button" class="btn btn-danger" href="{% url 'removeRecord' record.id %}">Delete</a>
+                                        <button type="button" class="btn btn-danger">Save changes</button>
                                     </div>
                                 </div>
                             </div>

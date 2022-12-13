@@ -35,9 +35,20 @@ def records(request, year):
     record_form = RecordForm(request.GET)
     month_today = datetime.now().month
     years = (set([r.date.year for r in allrecords]))
-    month_value = sorted(set([r.date.month for r in record]), reverse=False)
-    month_names = [calendar.month_name[month] for month in month_value]
-    months = {month: name for month, name in zip(month_value, month_names)}
+    months = {
+        1:'January',
+        2:'February',
+        3:'March',
+        4:'April',
+        5:'May',
+        6:'June',
+        7:'July',
+        8:'August',
+        9:'September',
+        10:'October',
+        11:'November',
+        12:'December',
+        }
 
     data = {
     'allrecords': allrecords, 
@@ -45,7 +56,6 @@ def records(request, year):
     'record_form' : record_form, 
     'years':years, 
     'months' : months,
-    'month_value':month_value,
     'active_year' : year, 
     'month_today':month_today}
     return render(request, 'patients/records.html', data)

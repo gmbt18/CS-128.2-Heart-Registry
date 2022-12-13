@@ -196,7 +196,7 @@
                         {% for record in records %}
                         {% if record.date.month is month %}
                         <tr class="border-bottom">
-                            <th scope="row">#</th>
+                            <th scope="row">{{forloop.counter}}</th>
                             <td>
                                 <div class="p-2">
                                     <span class="d-block font-weight-bold">{{record.date}}</span>
@@ -254,7 +254,6 @@
                                 <i type="button" data-bs-toggle="modal" data-bs-target="#delete"
                                     class="bi bi-trash-fill"></i>
                             </td>
-
                         </tr>
                         {% endif %}
                         {% endfor %}
@@ -263,19 +262,20 @@
             </div>
             {% endfor %}
         </div>
-        <nav>
+        <!-- <nav>
             <div class="nav nav-tabs" id="nav-tab" role="tablist">
                 {% for month in months %}
               <button class="nav-link {% if forloop.first %}active{% endif %}" id="nav-home-tab" data-bs-toggle="tab" data-bs-target="#{{month}}" type="button" role="tab" aria-controls="nav-home" aria-selected="true">Home</button>
                 {% endfor %}
             </div>
-          </nav>
-          <div class="tab-content" id="nav-tabContent">
+        </nav>
+        <div class="tab-content" id="nav-tabContent">
             {% for month in months %}
             <div class="tab-pane fade " id="month" role="tabpanel" aria-labelledby="nav-home-tab">...</div>
             {% endfor %}
-          </div>
+        </div> -->
     </div>
+    
     <div class="modal fade" id="view" tabindex="-1" aria-labelledby="viewmodal" aria-hidden="true">
         <div class="modal-dialog modal-dialog-scrollable modal-xl">
             <div class="modal-content">
@@ -293,6 +293,7 @@
             </div>
         </div>
     </div>
+
     <div class="modal fade" id="edit" tabindex="-1" aria-labelledby="editmodal" aria-hidden="true">
         <div class="modal-dialog modal-dialog-scrollable modal-xl">
             <div class="modal-content">
@@ -310,6 +311,7 @@
             </div>
         </div>
     </div>
+
     <div class="modal fade" id="delete" tabindex="-1" aria-labelledby="deletemodal" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -327,6 +329,7 @@
             </div>
         </div>
     </div>
+
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
         crossorigin="anonymous"></script>

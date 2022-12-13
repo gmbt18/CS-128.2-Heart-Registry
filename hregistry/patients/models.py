@@ -97,9 +97,9 @@ class Record(models.Model):
 
 
     # many-to-many fields
-    angiographer = models.ManyToManyField(Staff,related_name='+',blank=True,null=True,)
-    anesthesiologist = models.ManyToManyField(Staff,related_name='+',blank=True,null=True,)
-    nurse = models.ManyToManyField(Staff,related_name='+',blank=True,null=True,)
+    angiographer = models.ManyToManyField(Staff,related_name='+',blank=True)
+    anesthesiologist = models.ManyToManyField(Staff,related_name='+',blank=True)
+    nurse = models.ManyToManyField(Staff,related_name='+',blank=True)
     # category = models.ManyToManyField(Category)
     # procedure = models.ManyToManyField(Procedure)
 

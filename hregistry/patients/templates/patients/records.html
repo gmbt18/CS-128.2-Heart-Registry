@@ -1,3 +1,4 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -5,13 +6,16 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
-
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
     <title>Heart Registry</title>
+    <style>
+     
+    </style>
 </head>
 <body>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <div class="container-fluid">
-          <a class="navbar-brand" href="#">Navbar</a>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-danger">
+        <div style="display: flex;" class="container-fluid">
+          <a class="navbar-brand" href="#"><img height="25px" src="{% static 'hregistry/heart-registry-white.png' %}" alt=""></a>
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
           </button>
@@ -46,191 +50,187 @@
         <br>
         <nav>
             <div class="nav nav-tabs" id="nav-tab" role="tablist">
-              <button class="nav-link active" id="nav-home-tab" data-bs-toggle="tab" data-bs-target="#nav-home" type="button" role="tab" aria-controls="nav-home" aria-selected="true">December</button>
-              <button class="nav-link" id="nav-profile-tab" data-bs-toggle="tab" data-bs-target="#nav-profile" type="button" role="tab" aria-controls="nav-profile" aria-selected="false">November</button>
-              <button class="nav-link" id="nav-contact-tab" data-bs-toggle="tab" data-bs-target="#nav-contact" type="button" role="tab" aria-controls="nav-contact" aria-selected="false">October</button>
+              <button class="nav-link text-danger active" id="nav-home-tab" data-bs-toggle="tab" data-bs-target="#nav-home" type="button" role="tab" aria-controls="nav-home" aria-selected="true">December</button>
+              <button class="nav-link text-danger" id="nav-profile-tab" data-bs-toggle="tab" data-bs-target="#nav-profile" type="button" role="tab" aria-controls="nav-profile" aria-selected="false">November</button>
+              <button class="nav-link text-danger" id="nav-contact-tab" data-bs-toggle="tab" data-bs-target="#nav-contact" type="button" role="tab" aria-controls="nav-contact" aria-selected="false">October</button>
             </div>
           </nav>
           <div class="tab-content" id="nav-tabContent" style="width: 100%; overflow-x: auto; overflow-y: hidden;">
             <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
                 
                 <br>
-                <table width="100%" class="table table-bordered table-fixed">
-                    <thead>
+                
+                <table width="10000px" style="white-space:nowrap; text-align: center; " class="table table-bordered table-fixed align-middle">
+                    <thead >
                       <tr class="border-bottom">
-                        <th style="width:300px">
-                            <span style="width: 20%;">#</span>
+                        <th scope="row">
+                            <span >#</span>
                         </th>
-                        <th>
+                        <th class="" >
                             <span class="ml-2">DATE</span>
                         </th>
-                        <th>
+                        <th class="" >
                             <span class="ml-2">HOSPITAL</span>
                         </th>
-                        <th>
+                        <th class="" >
                             <span class="ml-2">PATIENT'S NAME</span>
                         </th>
-                        <th>
+                        <th >
                             <span class="ml-4">SEX</span>
                         </th>
-                        <th>
+                        <!-- <th >
                             <span class="ml-4">UNIT</span>
-                        </th>
-                        <th>
+                        </th> -->
+                        <th >
                             <span class="ml-4">CAT</span>
                         </th>
-                        <th>
+                        <!-- <th >
                             <span class="ml-4">SWAB</span>
                         </th>
-                        <th>
+                        <th >
                             <span class="ml-4">PATHWAY</span>
                         </th>
-                        <th colspan="2">
+                        <th  colspan="2">
                             <span class="ml-4">SCHEDULE TIME</span>
                         </th>
-                        <th>
+                        <th >
                             <span class="ml-4">RECEIVED</span>
                         </th>
-                        <th>
+                        <th >
                             <span class="ml-4">STARTED</span>
                         </th>
-                        <th>
+                        <th >
                             <span class="ml-4">PREOP</span>
                         </th>
-                        <th>
+                        <th >
                             <span class="ml-4">COD</span>
                         </th>
-                        <th>
+                        <th >
                             <span class="ml-4">ER DOOR</span>
                         </th>
-                        <th>
+                        <th >
                             <span class="ml-4">ACTI</span>
                         </th>
-                        <th>
+                        <th >
                             <span class="ml-4">WIRING</span>
                         </th>
-                        <th>
+                        <th >
                             <span class="ml-4">BALLOON</span>
                         </th>
-                        <th>
+                        <th >
                             <span class="ml-4">DTW</span>
                         </th>
-                        <th>
+                        <th >
                             <span class="ml-4">DTB</span>
                         </th>
-                        <th>
+                        <th >
                             <span class="ml-4">DX</span>
                         </th>
-                        <th>
+                        <th >
                             <span class="ml-4">ANGIOGRAPHER</span>
                         </th>
-                        <th>
+                        <th >
                             <span class="ml-4">ANESTHESIOLOGIST</span>
-                        </th>
-                        <th>
+                        </th>-->
+                        <th > 
                             <span class="ml-4">PROCEDURE</span>
                         </th>
-                        <th>
+                        <!-- <th >
                             <span class="ml-4">ENDED</span>
                         </th>
-                        <th>
+                        <th >
                             <span class="ml-4">ENDORSED</span>
                         </th>
-                        <th>
+                        <th >
                             <span class="ml-4">INTRA</span>
                         </th>
-                        <th>
+                        <th >
                             <span class="ml-4">UNIT</span>
-                        </th>
-                        <th>
+                        </th> -->
+                        <th >
                             <span class="ml-4">REMARKS</span>
                         </th>
-                        <th>
+                        <th >
                             <span class="ml-4">NURSE</span>
                         </th>
-                        <th>
+                        <!-- <th >
                             <span class="ml-4">TPI</span>
                         </th>
-                        <th>
+                        <th >
                             <span class="ml-4">POST</span>
                         </th>
-                        <th>
+                        <th >
                             <span class="ml-4">CVL</span>
                         </th>
-                        <th>
+                        <th >
                             <span class="ml-4">RADIATION DOSE</span>
                         </th>
-                        <th>
+                        <th >
                             <span class="ml-4">AMOUNT OF DYE</span>
                         </th>
-                        <th>
+                        <th >
                             <span class="ml-4">NUMBER OF BALLOONS</span>
                         </th>
-                        <th>
+                        <th >
                             <span class="ml-4">NUMBER OF STENTS</span>
+                        </th> -->
+                        <th>
+                            ACTION
                         </th>
                       </tr>
                     </thead>
                     <tbody>
+                    {% for record in records %}
                       <tr class="border-bottom">
-                        <td>
+                        <th scope="row">1</th>
+                        <td >
                             <div class="p-2">
-                                <span class="d-block font-weight-bold">1</span>
-                            </div>
-                        </td>
-                        <td>
-                            <div class="p-2">
-                                <span class="d-block font-weight-bold">12/12/22</span>
+                                <span class="d-block font-weight-bold">{{record.date}}</span>
                             </div>                  
                         </td>
-                        <td>
-                            <input class="form-control form-control-sm" type="text" placeholder="" aria-label=".form-control-sm example">
+                        <td >
+                            <div class="p-2">
+                                <span class="d-block font-weight-bold">{{record.hospital}}</span>
+                            </div>   
                         </td>
-                        <td>
-                            <input class="form-control form-control-sm" type="text" placeholder="" aria-label=".form-control-sm example">
+                        <td >
+                            <div class="p-2">
+                                <span class="d-block font-weight-bold">{{record.last_name}}, {{record.first_name}} {{record.middle_initial}}.</span>
+                            </div>                           
                         </td>
-                        <td>
-                            <button type="button" class="btn btn-danger dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown" aria-expanded="false">
-                                <span class="visually-hidden">Toggle Dropdown</span>
-                              </button>
-                              <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" href="#">F</a></li>
-                                <li><a class="dropdown-item" href="#">M</a></li>
-                              </ul>
+                        <td >
+                            <div class="p-2">
+                                <span class="d-block font-weight-bold">{{record.sex}}</span>
+                            </div> 
                         </td>
-                        <td>
+                        <td >
                             <div class="p-2 d-flex flex-column">
-                                <span>APW2</span>
+                                <span>{{record.category}}</span>
+                            </div>
+                        </td>
+                        <td >
+                            <div class="p-2 d-flex flex-column">
+                                <span>{{record.procedure}}</span>
+                            </div>
+                        </td>
+                        <td >
+                            <div class="p-2 d-flex flex-column">
+                                <span>{{record.remarks}}</span>
+                            </div>
+                        </td>
+                        <td >
+                            <div class="p-2 d-flex flex-column">
+                                <span>{{record.nurse}}</span>
                             </div>
                         </td>
                         <td>
-                            <div class="p-2 d-flex flex-column">
-                                <span>PDP</span>
-                            </div>
-                        </td>
-                        <td>
-                            <div class="p-2 d-flex flex-column">
-                                <span>NEGATIVE</span>
-                            </div>
-                        </td>
-                        <td>
-                            <div class="p-2 d-flex flex-column">
-                                <span>X</span>
-                            </div>
-                        </td>
-                        <td>
-                            <div class="p-2 d-flex flex-column">
-                                <span>1</span>
-                            </div>
-                        </td>
-                        <td>
-                            <div class="p-2 d-flex flex-column">
-                                <span>2</span>
-                            </div>
+                            <i class="bi bi-eye-fill"></i>
+                            <i class="bi bi-pencil-square"></i>
+                            <i class="bi bi-trash-fill"></i>
                         </td>
                         
                       </tr>
-                      
+                      {% endfor %}
                     </tbody>
                 </table>
             </div>

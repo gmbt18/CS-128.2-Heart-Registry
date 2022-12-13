@@ -12,9 +12,9 @@ class StaffForm(ModelForm):
         fields = ['user', 'title', 'middle_initial']
     
 class RecordForm(ModelForm):
-    nurse = ModelChoiceField(queryset=Staff.objects.filter(user_type=1))
-    anesthesiologist = ModelChoiceField(queryset=Staff.objects.filter(user_type=3))
-    angiographer = ModelChoiceField(queryset=Staff.objects.filter(user_type=4))
+    # nurse = ModelChoiceField(queryset=Staff.objects.filter(user_type=1))
+    # anesthesiologist = ModelChoiceField(queryset=Staff.objects.filter(user_type=3))
+    # angiographer = ModelChoiceField(queryset=Staff.objects.filter(user_type=4))
 
     class Meta:
         model = Record
@@ -24,9 +24,9 @@ class RecordForm(ModelForm):
         'procedure', 'tpi']
 
 class EditRecordForm(ModelForm):
-    nurse = ModelChoiceField(queryset=Staff.objects.filter(user_type=1))
-    anesthesiologist = ModelChoiceField(queryset=Staff.objects.filter(user_type=3))
-    angiographer = ModelChoiceField(queryset=Staff.objects.filter(user_type=4))
+    # nurse = ModelChoiceField(queryset=Staff.objects.filter(user_type=1))
+    # anesthesiologist = ModelChoiceField(queryset=Staff.objects.filter(user_type=3))
+    # angiographer = ModelChoiceField(queryset=Staff.objects.filter(user_type=4))
 
     class Meta:
         model = Record

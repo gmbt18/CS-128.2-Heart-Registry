@@ -39,8 +39,17 @@
                         <a class="nav-link" href="#">Profile</a>
                     </li>
                 </ul>
+                    <div class="navbar-nav ms-auto">
+                    <ul class="nav navbar-nav navbar-right ">
+                        <a class="nav-link text-light active" href="{% url 'logoutPage' %}">
+                        <i class="bi bi-box-arrow-right"></i>
+                        Logout
+                        </a>
+                    </ul>
+                    
             </div>
         </div>
+        
     </nav>
     <main>
         {% block content %}

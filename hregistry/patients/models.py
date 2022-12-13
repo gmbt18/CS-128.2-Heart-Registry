@@ -95,6 +95,13 @@ class Record(models.Model):
     unit_after = models.CharField(blank=True,null=True,max_length=50)
     remarks = models.CharField(blank=True,null=True,max_length=200)
 
+    preop = models.DurationField(blank=True,null=True)
+    cod = models.DurationField(blank=True,null=True)
+    dtw = models.DurationField(blank=True,null=True)
+    dtb = models.DurationField(blank=True,null=True)
+    intra = models.DurationField(blank=True,null=True)
+    post = models.DurationField(blank=True,null=True)
+    cvl = models.DurationField(blank=True,null=True)
 
     # many-to-many fields
     angiographer = models.ManyToManyField(Staff,related_name='+',blank=True)

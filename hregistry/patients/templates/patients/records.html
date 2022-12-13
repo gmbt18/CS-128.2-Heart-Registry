@@ -47,11 +47,11 @@
 
         <button class="btn btn-danger btn-lg dropdown-toggle" type="button" data-bs-toggle="dropdown"
             aria-expanded="false">
-            2022
+            {{ active_year }}
         </button>
         <ul class="dropdown-menu">
             {% for year in years %}
-            <li><a class="dropdown-item" href="#">{{year}}</a></li>
+            <li><a class="dropdown-item"  href="{% url 'records' year %}" >{{year}}</a></li>
             {% endfor %}
         </ul>
         <br>
@@ -68,7 +68,6 @@
 
         <div class="tab-content" id="nav-tabContent" >
             {% for month in months %}
-
             <div class="tab-pane fade {% if forloop.first %}show active{% endif %}" id="{{month}}" role="tabpanel"
                 aria-labelledby="{{month}}">
                 <br>

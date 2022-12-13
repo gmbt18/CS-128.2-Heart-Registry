@@ -21,7 +21,7 @@ from django.conf.urls.static import static
 from django.conf import settings
 from . import views
 urlpatterns = [
-    path('records', views.records, name="records")
+    path('records/<str:year>', views.records, name="records"),
 ]
 
 if settings.DEBUG:

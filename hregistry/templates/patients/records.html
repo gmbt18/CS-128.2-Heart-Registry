@@ -229,7 +229,7 @@
                                                 <b>Date: </b>{{ record.date }} 
                                             </div>
                                             <div class="col md-6">
-                                                <b>Acti: </b>{{ record.acti }}
+                                                <b>Balloon: </b>{{ record.balloon }}
                                             </div>    
                                         </div>
 
@@ -238,7 +238,7 @@
                                                 <b>Patient's Name: </b> {{record.last_name}}, {{record.first_name}} {{record.middle_initial}}.
                                             </div>
                                             <div class="col md-6">
-                                                <b>Wiring: </b>{{ record.wiring }}
+                                                <b>DTW: </b>{{ record.dtw }}
                                             </div>    
                                         </div>
 
@@ -247,7 +247,7 @@
                                                 <b>Hospital: </b>{{ record.hospital }}
                                             </div>
                                             <div class="col md-6">
-                                                <b>Balloon: </b>{{ record.balloon }}
+                                                <b>DTB: </b>{{ record.dtb }}
                                             </div>    
                                         </div>
 
@@ -329,7 +329,7 @@
                                                     {% endif %}
                                             </div>
                                             <div class="col md-6">
-                                                <b>Unit: </b>{{ record.unit_after }}
+                                                <b>Intra: </b>{{ record.intra }}
                                             </div>    
                                         </div>
 
@@ -338,13 +338,22 @@
                                                 <b>Received: </b>{{ record.received }}
                                             </div>
                                             <div class="col md-6">
-                                                <b>Remarks: </b>{{ record.remarks }}
+                                                <b>Unit: </b>{{ record.unit_after }}                               
                                             </div>    
                                         </div>
 
                                         <div class="row pb-2">
                                             <div class="col md-6">
                                                 <b>Started: </b>{{ record.started }}
+                                            </div>
+                                            <div class="col md-6">
+                                                <b>Remarks: </b>{{ record.remarks }}
+                                            </div>    
+                                        </div>
+
+                                        <div class="row pb-2">
+                                            <div class="col md-6">
+                                                <b>PRE-OP: </b>{{ record.preop }}
                                             </div>
                                             <div class="col md-6">
                                                 <b>Nurse: </b>                                        
@@ -360,11 +369,35 @@
 
                                         <div class="row pb-2">
                                             <div class="col md-6">
-                                                <b>ER Door: </b>{{ record.er_door }}
+                                                <b>COD: </b>{{ record.cod }}
                                             </div>
                                             <div class="col md-6">
                                                 <b>TPI: </b>{{ record.tpi }}
                                             </div>    
+                                        </div>
+
+                                        <div class="row pb-2">
+                                            <div class="col md-6">
+                                                <b>ER Door: </b>{{ record.er_door }}
+                                            </div>
+                                            <div class="col md-6">
+                                                <b>Post: </b>{{ record.post }}
+                                            </div>    
+                                        </div>
+
+                                        <div class="row pb-2">
+                                            <div class="col md-6">
+                                                <b>Acti: </b>{{ record.acti }}
+                                            </div>
+                                            <div class="col md-6">
+                                                <b>CVL: </b>{{ record.cvl }}
+                                            </div>    
+                                        </div>
+
+                                        <div class="row pb-2">
+                                            <div class="col md-6">
+                                                <b>Wiring: </b>{{ record.wiring }}
+                                            </div>
                                         </div>
                                     </div>
                                     <div class="modal-footer">

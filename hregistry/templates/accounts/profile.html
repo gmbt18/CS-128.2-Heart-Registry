@@ -3,10 +3,18 @@
 {% block title %}Profile{% endblock title %}
 
 {% block content %}
+<!--Modals-->
+<div class="modal fade" tabindex="-1" role="dialog" id="modal">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+      
+      </div>
+    </div>
+  </div>
 <div class = "container w-70 pt-5 mt-4">
     
     <div class= "row px-4 pb-3 shadow-sm border">
-        <h2 class="py-4">Profile {{booking.id}}</h2>
+        <h2 class="py-4">Profile</h2>
         <div class="col-4">
             <div class="mb-3">
                 <strong><label class='form-label'>Name:</label></strong>
@@ -35,9 +43,31 @@
         </div>
         <div class="col-4 pe-4 text-center">
             <button type="button" class="editp bs-modal btn btn-warning mt-4"><i class="fa-solid fa-pen-to-square"></i> Edit Profile</button>
-        </div>
-    </div>
+            {%if request.user.user_type == None %}
+            <button type="button" class="pass bs-modal btn btn-secondary mt-4"><i class="fa-solid fa-key"></i> Change Password </button>
+            {%endif%}
+    </div>  
 
 </div>
 
 {% endblock content %}
+
+{% block extrascripts %}
+<script>
+$(function() {
+
+    function updateUserModalForm() {
+        $('.editp').modalForm({
+            formURL:"{% url 'editProfile' %}",
+        });
+    } 
+    updateUserModalForm();
+    function updateAdminPassModalForm() {
+        $('.pass').modalForm({
+            formURL:"{% url 'changeAdminPass' %}",
+        });
+    } 
+    updateAdminPassModalForm();
+})
+</script>
+{% endblock extrascripts %}

@@ -76,7 +76,7 @@ def viewProfile(request):
 
 @login_required(login_url='loginPage')
 def manageUsers(request):
-    users = AuthUser.objects.exclude(username='admin')
+    users = AuthUser.objects.exclude(user_type=None)
     
    
     if request.method =="POST" and request.POST.get('role'):
@@ -116,6 +116,19 @@ def manageUsers(request):
     context={'form':form,'users':users}
     return render(request,"accounts/users.html",context)
 
+def editProfile(request):
+    user = request.user
+    form = EditUserForm(instance=user)
+
+    if request.method == "POST":
+        form = EditUserForm(request.POST, instance=user)
+
+        if form.is_valid():
+            form.save()
+        return HttpResponseRedirect(reverse_lazy('viewProfile'))
+
+    context={'form':form}
+    return render(request,'accounts/edit-user.html',context)
 
 
 #edit user modal
@@ -134,9 +147,21 @@ def editUser(request,pk):
 
         context = {'form': form,'u':user}
         return render(request, 'accounts/edit-user.html', context)
-
+#change user password
 def changePass(request,pk):
     user = AuthUser.objects.get(id=pk)
+    pw = PasswordChangeForm(user)
+    if request.method == "POST":
+        pw = PasswordChangeForm(data=request.POST, user=user)
+        if pw.is_valid():
+            pw.save()
+            update_session_auth_hash(request, pw.user)
+    context = {'pw': pw}
+    return render(request, 'accounts/change-password.html', context)
+
+#change password for admin
+def changeAdminPass(request):
+    user = request.user
     pw = PasswordChangeForm(user)
     if request.method == "POST":
         pw = PasswordChangeForm(data=request.POST, user=user)

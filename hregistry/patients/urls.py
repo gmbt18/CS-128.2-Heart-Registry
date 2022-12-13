@@ -22,6 +22,8 @@ from django.conf import settings
 from accounts.views import *
 
 urlpatterns = [
+    path('records', views.records, name="records"),
+    path('export-to-csv', views.exportToCSV, name="export_to_csv"),
     path('',views.indexPage, name="indexPage"),
     path('records/<int:year>', views.records, name="records"),
     path('records/edit/<str:id>',views.editRecordPage,name="editRecord"),

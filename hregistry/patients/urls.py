@@ -22,7 +22,8 @@ from django.conf import settings
 from accounts.views import *
 
 urlpatterns = [
-    path('records', views.records, name="records"),
+    path('',views.indexPage, name="indexPage"),
+    path('records/<int:year>', views.records, name="records"),
 ]
 
 if settings.DEBUG:

@@ -4,18 +4,40 @@ from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout ,update_session_auth_hash
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponse
+from django.urls import reverse_lazy,reverse
 
+from datetime import datetime
+from django.db.models import F
 from .models import *
 from .forms import *
 
 from accounts.models import *
 
+#redirects to the current year at the start of the page
+def indexPage(request):
+    year = datetime.now().year
+    return redirect(reverse_lazy('records',kwargs={'year':year}))
+
 # Create your views here.
+
 @login_required(login_url='loginPage')
-def records(request):
-    record = Record.objects.all()
-    data = {'records':record}
+def records(request, year):
+    allrecords = Record.objects.all()
+    record = Record.objects.filter(date__year = year)
+    record_form = RecordForm(request.GET)
+    month_today = datetime.now().month
+    years = allrecords.annotate(year=F('date__year'))
+    months = record.annotate(month=F('date__month'))
+    data = {
+    'allrecords': allrecords, 
+    'records':record, 
+    'record_form' : record_form, 
+    'years':years, 
+    'months' : months, 
+    'active_year' : year, 
+    'month_today':month_today}
     return render(request, 'patients/records.html', data)
+    
 # Create function for adding patient
 def addRecordPage(request):
     form = RecordForm()

@@ -15,9 +15,10 @@ from accounts.models import *
 from accounts.views import indexPage, loginPage
 
 #redirects to the current year at the start of the page
-# def indexPage(request):
-#     year = datetime.now().year
-#     return redirect(reverse_lazy('records',kwargs={'year':year}))
+@login_required(login_url='loginPage')
+def indexPage(request):
+    year = datetime.now().year
+    return redirect(reverse_lazy('records',kwargs={'year':year}))
 
 # Create your views here.
 
@@ -49,7 +50,7 @@ def addRecordPage(request):
         if form.is_valid():
             form.save()
 
-        return redirect('index')
+        return redirect('indexPage')
     
     context = {'form': form}
     return render(request, context)

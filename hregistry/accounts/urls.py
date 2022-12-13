@@ -20,9 +20,8 @@ from django.conf import settings
 from . import views
 
 urlpatterns = [
-    path('',views.indexPage, name="indexPage"),
     path('login',views.loginPage, name="loginPage"),
-    path('logout',views.logoutPage, name="logoutPage")
+    path('logout',views.logOutPage, name="logoutPage")
 ]
 
 if settings.DEBUG:

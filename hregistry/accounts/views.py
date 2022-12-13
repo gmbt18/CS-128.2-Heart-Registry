@@ -34,8 +34,7 @@ def registerUserPage(request):
 # Create function for user signup
 def loginPage(request):
     if request.user.is_authenticated:
-        year = datetime.now().year
-        return redirect(reverse_lazy('records',kwargs={'year':year}))
+        return redirect('indexPage')
     else:
         if request.method == "POST":
             username = request.POST.get('username')
@@ -45,13 +44,12 @@ def loginPage(request):
 
             if user is not None:
                 login(request, user)
-                year = datetime.now().year
-                return redirect(reverse_lazy('records',kwargs={'year':year}))
+                return redirect('records')
 
         context = {}
         return render(request, 'accounts/login.html', context)
 
-def logoutPage(request):
+def logOutPage(request):
     logout(request)
     return redirect('loginPage')
 

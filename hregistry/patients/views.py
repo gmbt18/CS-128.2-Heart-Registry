@@ -30,6 +30,12 @@ def indexPage(request):
 
 @login_required(login_url='loginPage')
 def records(request, year):
+
+    if request.method == "POST":
+        form = RecordForm(request.POST)
+        if form.is_valid:
+            form.save()
+
     allrecords = Record.objects.all()
     record = Record.objects.filter(date__year = year)
     record_form = RecordForm(request.GET)
@@ -61,6 +67,7 @@ def records(request, year):
     return render(request, 'patients/records.html', data)
     
 # Create function for adding patient
+# can be removed? kasi nasa modal na naman yung pag add
 def addRecordPage(request):
     form = RecordForm()
 

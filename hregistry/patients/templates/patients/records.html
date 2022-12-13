@@ -75,7 +75,7 @@
                 <table width="10000px" style="white-space:nowrap; text-align: center; " class="table table-bordered table-fixed align-middle">
                     <thead >
                       <tr class="border-bottom">
-                        <th scope="row">
+                        <th scope="row" class = "not-important">
                             <span >#</span>
                         </th>
                         <th class="" >
@@ -195,7 +195,7 @@
                         {% for record in records %}
                         {% if record.date.month is month %}
                         <tr class="border-bottom">
-                            <th scope="row">{{forloop.counter}}</th>
+                            <th scope="row" class = "not-important">{{forloop.counter}}</th>
                             <td>
                                 <div class="p-2">
                                     <span class="d-block font-weight-bold">{{record.date}}</span>
@@ -279,12 +279,14 @@
         <div class="modal-dialog modal-dialog-scrollable modal-xl">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                    <h5 class="modal-title" id="exampleModalLabel">View Details</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
+                {% if record %}
                 <div class="modal-body">
-                    {{ record_form.date }}
+                    <h4>Date: {{ record.date }}</h4>
                 </div>
+                {% endif %}
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                     <button type="button" class="btn btn-danger">Save changes</button>

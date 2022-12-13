@@ -3,9 +3,11 @@ from django.shortcuts import render, redirect
 from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout ,update_session_auth_hash
 from django.contrib.auth.decorators import login_required
-from django.http import HttpResponse
+from django.http import HttpResponse,HttpResponseRedirect
 from django.urls import reverse_lazy,reverse
-import calendar
+
+
+from bootstrap_modal_forms.generic import BSModalDeleteView
 
 from datetime import datetime
 from .models import *
@@ -88,20 +90,20 @@ def removeRecord(request, id):
     record.delete()
     return redirect('indexPage')
 
-# Create function for editing patient details
+#edit record modal asynch
 def editRecordPage(request, id):
     record = Record.objects.get(id=id)
-    form = EditRecordForm(instance=record)
-
+    year = record.date.year
     if request.method == "POST":
         form = EditRecordForm(request.POST, instance=record)
 
         if form.is_valid():
             form.save()
-            return redirect("index", id=record.id)
-
-    context = {'record': record, 'form': form}
-    return render(request, context)
+        return HttpResponseRedirect(reverse_lazy('records',kwargs={'year':year}))
+    else:
+        form = EditRecordForm(instance=record)
+        context = {'form': form}
+        return render(request, 'patients/edit-record.html', context)
 
 # Create function for adding staff
 def addStaffPage(request):

@@ -1,0 +1,182 @@
+{% load crispy_forms_tags %}
+
+<form method="POST" action="" novalidate>
+    {% csrf_token %}
+
+    <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Edit Record</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+    </div>
+
+    <div class="modal-body p-3">
+
+
+        <div class="row">
+
+            <div class='col-3'>
+                {{form.date | as_crispy_field}}
+            </div>
+            <div class='col-3'>
+                {{form.hospital | as_crispy_field}}
+            </div>
+
+        </div>
+
+
+        <div class="row">
+
+            <div class="col-3">
+                {{form.first_name | as_crispy_field}}
+            </div>
+            <div class="col-1">
+                {{form.middle_initial | as_crispy_field}}
+            </div>
+            <div class="col-3">
+                {{form.last_name | as_crispy_field}}
+            </div>
+            <div class="col-2">
+                {{form.age | as_crispy_field}}
+            </div>
+            <div class="col-1">
+                {{form.sex | as_crispy_field}}
+            </div>
+
+        </div>
+
+        <br>
+
+        <div class="row">
+
+            <div class="col-3">
+                {{form.unit_before | as_crispy_field}}
+            </div>
+            <div class="col-3">
+                {{form.category | as_crispy_field}}
+            </div>
+            <div class="col-2">
+                {{form.swab | as_crispy_field}}
+            </div>
+
+        </div>
+
+        <br>
+
+        <div class="row">
+
+            <div class="col-2">
+                {{form.pathway | as_crispy_field}}
+            </div>
+            <div class="col-2">
+                {{form.is_emergency | as_crispy_field}}
+            </div>
+            <div class="col-3">
+                {{form.schedule_time_from | as_crispy_field}}
+            </div>
+            <div class="col-3">
+                {{form.schedule_time_to | as_crispy_field}}
+            </div>
+
+        </div>
+
+        <br>
+
+        <div class="row">
+
+            <div class="col-2">
+                {{form.received | as_crispy_field}}
+            </div>
+            <div class="col-2">
+                {{form.started | as_crispy_field}}
+            </div>
+            <div class="col-2">
+                {{form.er_door | as_crispy_field}}
+            </div>
+            <div class="col-2">
+                {{form.acti | as_crispy_field}}
+            </div>
+            <div class="col-2">
+                {{form.wiring | as_crispy_field}}
+            </div>
+            <div class="col-2">
+                {{form.balloon | as_crispy_field}}
+            </div>
+
+        </div>
+
+        <br><br>
+
+        <div class="row">
+
+            <div class="col-5">
+                {{form.dx | as_crispy_field}}
+            </div>
+            <div class="col-5">
+                {{form.procedure | as_crispy_field}}
+            </div>
+
+        </div>
+
+        <br>
+
+        <div class="row">
+
+            <div class="col">
+                {{form.angiographer | as_crispy_field}}
+            </div>
+            <div class="col">
+                {{form.anesthesiologist | as_crispy_field}}
+            </div>
+
+        </div>
+
+        <br>
+
+        <div class="row">
+
+            <div class="col-3">
+                {{form.ended | as_crispy_field}}
+            </div>
+            <div class="col-3">
+                {{form.endorsed | as_crispy_field}}
+            </div>
+            <div class="col-4">
+                {{form.unit_after | as_crispy_field}}
+            </div>
+
+        </div>
+
+        <br>
+
+        <div class="row">
+
+            <div class="col-9">
+                {{form.remarks | as_crispy_field}}
+            </div>
+            <div class="col-2">
+                {{form.tpi | as_crispy_field}}
+            </div>
+
+        </div>
+
+        <br>
+
+        <div class="row">
+
+            <div class="col">
+                {{form.nurse | as_crispy_field}}
+            </div>
+
+        </div>
+
+        <br><br>
+
+    </div>
+    
+    <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="Submit" class="btn btn-danger">Save changes</button>
+        {% comment %} <button type="button" class="btn btn-danger" href="{% url 'removeRecord' record.id %}">Save changes</button> {% endcomment %}
+    </div>
+
+</form>
+

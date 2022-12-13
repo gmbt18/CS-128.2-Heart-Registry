@@ -24,6 +24,7 @@ from accounts.views import *
 urlpatterns = [
     path('',views.indexPage, name="indexPage"),
     path('records/<int:year>', views.records, name="records"),
+    path('records/edit/<str:id>',views.editRecordPage,name="editRecord"),
     path('records/delete/<str:id>', views.removeRecord, name="removeRecord"),
 ]
 

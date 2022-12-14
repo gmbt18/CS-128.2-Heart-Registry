@@ -4,7 +4,7 @@ from django.contrib import messages
 from django.http import HttpResponseRedirect
 from django.contrib.auth import authenticate, login, logout ,update_session_auth_hash
 from django.contrib.auth.models import Group
-from django.contrib.auth.decorators import login_required
+from django.contrib.auth.decorators import login_required, user_passes_test
 from django.http import HttpResponse, JsonResponse
 from django.template.loader import render_to_string
 from django.urls import reverse_lazy,reverse
@@ -75,6 +75,7 @@ def viewProfile(request):
     context = {'user':user}
     return render(request,'accounts/profile.html', context)
 
+@user_passes_test(lambda u : u.is_superuser)
 @login_required(login_url='loginPage')
 def manageUsers(request):
     users = AuthUser.objects.exclude(user_type=None)

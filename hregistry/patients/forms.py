@@ -12,7 +12,10 @@ class StaffForm(ModelForm):
         fields = ['user', 'title', 'middle_initial']
     
 class RecordForm(ModelForm):
-    nurse, anesthesiologist, angiographer = ModelMultipleChoiceField(queryset=Staff.objects.all())
+    nurse = ModelMultipleChoiceField(queryset=Staff.objects.all(), required=False)
+    anesthesiologist = ModelMultipleChoiceField(queryset=Staff.objects.all(), required=False)
+    angiographer = ModelMultipleChoiceField(queryset=Staff.objects.all(), required=False)
+
     date = forms.DateField(
         widget=forms.TextInput(
             attrs={'type' : 'date'}
@@ -60,9 +63,9 @@ class RecordForm(ModelForm):
         }
 
 class EditRecordForm(ModelForm):
-    nurse = ModelMultipleChoiceField(queryset=Staff.objects.filter(user__user_type=1),required=False)
-    anesthesiologist = ModelMultipleChoiceField(queryset=Staff.objects.filter(user__user_type=3),required=False)
-    angiographer = ModelMultipleChoiceField(queryset=Staff.objects.filter(user__user_type=4),required=False)
+    nurse = ModelMultipleChoiceField(queryset=Staff.objects.all(), required=False)
+    anesthesiologist = ModelMultipleChoiceField(queryset=Staff.objects.all(), required=False)
+    angiographer = ModelMultipleChoiceField(queryset=Staff.objects.all(), required=False)
 
     class Meta:
         model = Record

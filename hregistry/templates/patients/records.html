@@ -524,38 +524,6 @@
         </div>
     </div>
 <script>
-<<<<<<< Updated upstream
-document.getElementById('nav-tab').addEventListener('click', function(e) {
-  // Get all elements with class 'nav-link'
-  var navLinks = document.getElementsByClassName('nav-link');
-  
-  // Loop through each nav link and remove the 'active' class
-  for (var i = 0; i < navLinks.length; i++) {
-    navLinks[i].classList.remove('active');
-  }
-  
-  // Add the 'active' class to the clicked nav link
-  e.target.classList.add('active');
-  
-  // Get all elements with class 'tab-pane'
-  var tabPanes = document.getElementsByClassName('tab-pane');
-  
-  // Loop through each tab pane and remove the 'active' class
-  for (var i = 0; i < tabPanes.length; i++) {
-    tabPanes[i].classList.remove('active');
-  }
-  
-  // Get the id of the clicked nav link
-  var clickedNavLinkId = e.target.id;
-  
-  // Get the corresponding tab pane for the clicked nav link
-  var clickedTabPane = document.getElementById(clickedNavLinkId.replace('-tab', ''));
-  
-  // Add the 'active' class to the corresponding tab pane
-  clickedTabPane.classList.add('active');
-});
-
-=======
     $(function() {
         function updateRecordModalForm() {
     
@@ -602,6 +570,5 @@ document.getElementById('nav-tab').addEventListener('click', function(e) {
         
     })
     
->>>>>>> Stashed changes
 </script>
 {% endblock content %}

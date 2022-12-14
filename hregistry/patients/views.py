@@ -3,12 +3,8 @@ from django.shortcuts import render, redirect
 from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout ,update_session_auth_hash
 from django.contrib.auth.decorators import login_required
-<<<<<<< Updated upstream
-from django.http import HttpResponse
-=======
 from django.http import HttpResponse,HttpResponseRedirect,JsonResponse
 from django.template.loader import render_to_string
->>>>>>> Stashed changes
 from django.urls import reverse_lazy,reverse
 import calendar
 
@@ -89,30 +85,18 @@ def removeRecord(request, id):
 # Create function for editing patient details
 def editRecordPage(request, id):
     record = Record.objects.get(id=id)
-<<<<<<< Updated upstream
-    form = EditRecordForm(instance=record)
-
-=======
     year = record.date.year
     form = EditRecordForm(instance=record)
->>>>>>> Stashed changes
     if request.method == "POST":
         form = EditRecordForm(request.POST, instance=record)
 
         if form.is_valid():
             form.save()
-<<<<<<< Updated upstream
-            return redirect("index", id=record.id)
-
-    context = {'record': record, 'form': form}
-    return render(request, context)
-=======
         return HttpResponseRedirect(reverse_lazy('records',kwargs={'year':year}))
  
         
     context = {'form': form}
     return render(request, 'patients/edit-record.html', context)
->>>>>>> Stashed changes
 
 # Create function for adding staff
 def addStaffPage(request):

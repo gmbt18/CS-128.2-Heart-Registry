@@ -38,7 +38,9 @@ def records(request, year):
     if request.method == "POST":
         form = RecordForm(request.POST)
         if form.is_valid:
-            form.save()
+            unsaved = form.save(commit=False)
+            unsaved.calculate_fields()
+            unsaved.save()
 
     allrecords = Record.objects.all()
     record = Record.objects.filter(date__year = year)
@@ -100,7 +102,9 @@ def editRecordPage(request, id):
         form = EditRecordForm(request.POST, instance=record)
 
         if form.is_valid():
-            form.save()
+            unsaved = form.save(commit=False)
+            unsaved.calculate_fields()
+            unsaved.save()
         return HttpResponseRedirect(reverse_lazy('records',kwargs={'year':year}))
     else:
         form = EditRecordForm(instance=record)

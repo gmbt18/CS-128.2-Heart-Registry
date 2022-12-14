@@ -1,6 +1,7 @@
 from django.db import models
 from django.core.validators import MinValueValidator
 from accounts.models import *
+from datetime import datetime,date
 
 # Create your models here.
 
@@ -95,6 +96,13 @@ class Record(models.Model):
     unit_after = models.CharField(blank=True,null=True,max_length=50)
     remarks = models.CharField(blank=True,null=True,max_length=200)
 
+    preop = models.DurationField(blank=True,null=True)
+    cod = models.DurationField(blank=True,null=True)
+    dtw = models.DurationField(blank=True,null=True)
+    dtb = models.DurationField(blank=True,null=True)
+    intra = models.DurationField(blank=True,null=True)
+    post = models.DurationField(blank=True,null=True)
+    cvl = models.DurationField(blank=True,null=True)
 
     # many-to-many fields
     angiographer = models.ManyToManyField(Staff,related_name='+',blank=True)
@@ -107,41 +115,49 @@ class Record(models.Model):
     # unsure
     tpi = models.CharField(blank=True,null=True,max_length=50)
 
+    def calculate_fields(self):
+        self.preop = self.get_preop()
+        self.cod = self.get_cod()
+        self.dtw = self.get_dtw()
+        self.dtb = self.get_dtb()
+        self.intra = self.get_intra()
+        self.post = self.get_post()
+        self.cvl = self.get_cvl()
 
     def get_preop(self):
-        if self.received is None or self.started is None:
+        if self.started is None or self.received is None:
             return None
-        return self.received - self.started
+        return datetime.combine(date.today(),self.started) - datetime.combine(date.today(),self.received)
 
     def get_cod(self):
         if self.received is None or self.acti is None:
             return None
-        return self.received - self.acti
+        return datetime.combine(date.today(),self.received) - datetime.combine(date.today(),self.acti)
 
     def get_dtw(self):
         if self.wiring is None or self.acti is None:
             return None
-        return self.wiring - self.acti
+        return datetime.combine(date.today(),self.wiring) - datetime.combine(date.today(),self.acti)
     
     def get_dtb(self):
         if self.balloon is None or self.acti is None:
             return None
-        return self.balloon - self.acti
+        return datetime.combine(date.today(),self.balloon) - datetime.combine(date.today(),self.acti)
 
     def get_intra(self):
         if self.ended is None or self.started is None:
             return None
-        return self.ended - self.started
+        return datetime.combine(date.today(),self.ended) - datetime.combine(date.today(),self.started)
 
     def get_post(self):
         if self.endorsed is None or self.ended is None:
             return None
-        return self.endorsed - self.ended
+        return datetime.combine(date.today(),self.endorsed) - datetime.combine(date.today(),self.ended)
 
     def get_cvl(self):
         if self.endorsed is None or self.received is None:
             return None
-        return self.endorsed - self.received
+        return datetime.combine(date.today(),self.endorsed) - datetime.combine(date.today(),self.received)
 
     def __str__(self):
         if self.hospital is None:

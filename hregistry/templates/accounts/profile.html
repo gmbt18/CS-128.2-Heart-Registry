@@ -11,27 +11,28 @@
       </div>
     </div>
   </div>
-<div class = "container w-70 pt-5 mt-4">
+<div class = "container w-70 pt-3 mt-4">
     
-    <div class= "row px-4 pb-3 shadow-sm border">
-        <h2 class="py-4">Profile</h2>
+    <div class= "row px-4 pb-3 shadow-sm border" style="border-radius: 20px;">
+        <h2 class="py-4">Profile</h2> 
+
         <div class="col-4">
-            <div class="mb-3">
+            <div class="mb-1">
                 <strong><label class='form-label'>Name:</label></strong>
                 {{user.first_name}} {{user.last_name}}
                 
             </div>
-            <div class="mb-3">
+            <div class="mb-1">
                 <strong><label class='form-label'>Username:</label></strong>
                 {{user.username}}  
             </div>
-            <div class="mb-3">
+
+            <div class="mb-1">
                 <strong><label class='form-label'>Email:</label></strong>
                 {{user.email}}  
             </div>
-        </div>
-        <div class="col-4 pe-4">
-            <div class="mb-3">
+
+            <div class="mb-1">
                 <strong><label class='form-label'>Role:</label></strong>
                 {% if user.user_type != None %}
                 {{user.get_user_type_display}} 
@@ -39,14 +40,19 @@
                 Administrator
                 {% endif %}
             </div>
-           
+
+            <div class="mb-3">
+                <button type="button" class="editp bs-modal btn btn-warning mt-4"><i class="fa-solid fa-pen-to-square"></i> Edit Profile</button>
+                {%if request.user.user_type == None %}
+        
+                <button type="button" class="pass bs-modal btn btn-secondary mt-4"><i class="fa-solid fa-key"></i> Change Password </button>
+                {%endif%}
+            </div>
         </div>
-        <div class="col-4 pe-4 text-center">
-            <button type="button" class="editp bs-modal btn btn-warning mt-4"><i class="fa-solid fa-pen-to-square"></i> Edit Profile</button>
-            {%if request.user.user_type == None %}
-            <button type="button" class="pass bs-modal btn btn-secondary mt-4"><i class="fa-solid fa-key"></i> Change Password </button>
-            {%endif%}
-    </div>  
+        
+        <!-- <div class="col-4 pe-4">
+
+        </div> -->
 
 </div>
 

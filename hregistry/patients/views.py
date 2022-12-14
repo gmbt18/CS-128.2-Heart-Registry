@@ -41,6 +41,7 @@ def records(request, year):
             unsaved = form.save(commit=False)
             unsaved.calculate_fields()
             unsaved.save()
+            form.save_m2m()
 
     allrecords = Record.objects.all()
     record = Record.objects.filter(date__year = year)
@@ -103,8 +104,11 @@ def editRecordPage(request, id):
 
         if form.is_valid():
             unsaved = form.save(commit=False)
+            print(unsaved.angiographer)
             unsaved.calculate_fields()
             unsaved.save()
+            form.save_m2m()
+
         return HttpResponseRedirect(reverse_lazy('records',kwargs={'year':year}))
     else:
         form = EditRecordForm(instance=record)

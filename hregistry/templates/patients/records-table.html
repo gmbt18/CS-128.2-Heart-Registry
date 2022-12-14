@@ -135,8 +135,18 @@
           </td>
           <td>
               <div class="p-2">
-                  <span class="d-block font-weight-bold">{{record.last_name | default_if_none:""}}, {{record.first_name | default_if_none:""}}
-                      {{record.middle_initial | default_if_none:""}}.</span>
+                  <span class="d-block font-weight-bold">
+
+                    {% if record.last_name and record.first_name and record.middle_initial %}
+                        {{record.last_name}}, {{record.first_name}} {{record.middle_initial}}.
+                    {% elif record.last_name and record.first_name %}
+                        {{record.last_name}}, {{record.first_name}} 
+                    {% else %}
+                        
+                    {% endif %}
+                    <!-- {{record.last_name | default_if_none:""}}, {{record.first_name | default_if_none:""}}
+                      {{record.middle_initial | default_if_none:""}}. -->
+                    </span>
               </div>
           </td>
           <td>
@@ -355,7 +365,7 @@
 
                       <div class="row pb-2">
                           <div class="col md-6">
-                              <b>Acti: </b>{{ record.acti | default_if_none:"" }}
+                              <b>Activation: </b>{{ record.acti | default_if_none:"" }}
                           </div>
                           <div class="col md-6">
                               <b>CVL: </b>{{ record.cvl | default_if_none:"" }}

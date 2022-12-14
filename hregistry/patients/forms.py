@@ -31,8 +31,8 @@ class RecordForm(ModelForm):
 
         widgets = {
             'date' : forms.TextInput(attrs={'type':'date'}),
-            'is_emergency' : forms.CheckboxInput(),
-            'pathway' : forms.CheckboxInput(),
+            # 'is_emergency' : forms.CheckboxInput(),
+            # 'pathway' : forms.CheckboxInput(),
             'schedule_time_from' : forms.TextInput(attrs={'type':'time'}),
             'schedule_time_to' : forms.TextInput(attrs={'type':'time'}),
             'received' : forms.TextInput(attrs={'type':'time'}),

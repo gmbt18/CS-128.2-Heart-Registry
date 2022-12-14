@@ -1,5 +1,6 @@
 from django.db import models
 from django.core.validators import MinValueValidator
+from django.utils import timezone
 from accounts.models import *
 from datetime import datetime,date
 
@@ -69,7 +70,7 @@ class Record(models.Model):
         ('PENDING','Pending'),
     ]
 
-    date = models.DateField(blank=True,null=True)
+    date = models.DateField(default=timezone.now)
     hospital = models.BigIntegerField(blank=True,null=True,validators=[MinValueValidator(0)])
     first_name = models.CharField(blank=True,null=True,max_length=50)
     last_name = models.CharField(blank=True,null=True,max_length=50)

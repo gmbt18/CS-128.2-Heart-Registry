@@ -130,33 +130,33 @@
           </td>
           <td>
               <div class="p-2">
-                  <span class="d-block font-weight-bold">{{record.hospital}}</span>
+                  <span class="d-block font-weight-bold">{{record.hospital | default_if_none:""}}</span>
               </div>
           </td>
           <td>
               <div class="p-2">
-                  <span class="d-block font-weight-bold">{{record.last_name}}, {{record.first_name}}
-                      {{record.middle_initial}}.</span>
+                  <span class="d-block font-weight-bold">{{record.last_name | default_if_none:""}}, {{record.first_name | default_if_none:""}}
+                      {{record.middle_initial | default_if_none:""}}.</span>
               </div>
           </td>
           <td>
               <div class="p-2">
-                  <span class="d-block font-weight-bold">{{record.sex}}</span>
+                  <span class="d-block font-weight-bold">{{record.sex | default_if_none:""}}</span>
               </div>
           </td>
           <td>
               <div class="p-2 d-flex flex-column">
-                  <span>{{record.category}}</span>
+                  <span>{{record.category | default_if_none:""}}</span>
               </div>
           </td>
           <td>
               <div class="p-2 d-flex flex-column">
-                  <span>{{record.procedure}}</span>
+                  <span>{{record.procedure | default_if_none:""}}</span>
               </div>
           </td>
           <td>
               <div class="p-2 d-flex flex-column">
-                  <span>{{record.remarks}}</span>
+                  <span>{{record.remarks | default_if_none:""}}</span>
               </div>
           </td>
           <td>
@@ -195,40 +195,40 @@
                               <b>Date: </b>{{ record.date }} 
                           </div>
                           <div class="col md-6">
-                              <b>Balloon: </b>{{ record.balloon }}
+                              <b>Balloon: </b>{{ record.balloon | default_if_none:""}}
                           </div>    
                       </div>
 
                       <div class="row pb-2">
                           <div class="col md-6">
-                              <b>Patient's Name: </b> {{record.last_name}}, {{record.first_name}} {{record.middle_initial}}.
+                              <b>Patient's Name: </b> {{record.last_name | default_if_none:""}}, {{record.first_name | default_if_none:""}} {{record.middle_initial | default_if_none:""}}.
                           </div>
                           <div class="col md-6">
-                              <b>DTW: </b>{{ record.dtw }}
+                              <b>DTW: </b>{{ record.dtw | default_if_none:""}}
                           </div>    
                       </div>
 
                       <div class="row pb-2">
                           <div class="col md-6">
-                              <b>Hospital: </b>{{ record.hospital }}
+                              <b>Hospital: </b>{{ record.hospital | default_if_none:""}}
                           </div>
                           <div class="col md-6">
-                              <b>DTB: </b>{{ record.dtb }}
+                              <b>DTB: </b>{{ record.dtb | default_if_none:""}}
                           </div>    
                       </div>
 
                       <div class="row pb-2">
                           <div class="col md-6">
-                              <b>Age: </b>{{ record.age }}
+                              <b>Age: </b>{{ record.age | default_if_none:""}}
                           </div>
                           <div class="col md-6">
-                              <b>DX: </b>{{ record.dx }}
+                              <b>DX: </b>{{ record.dx | default_if_none:""}}
                           </div>    
                       </div>
 
                       <div class="row pb-2">
                           <div class="col md-6">
-                              <b>Sex: </b>{{ record.sex }}
+                              <b>Sex: </b>{{ record.sex | default_if_none:""}}
                           </div>
                           <div class="col md-6">
                               <b>Angiographer: </b>
@@ -244,7 +244,7 @@
 
                       <div class="row pb-2">
                           <div class="col md-6">
-                              <b>Unit Before: </b>{{ record.unit_before }}
+                              <b>Unit Before: </b>{{ record.unit_before | default_if_none:""}}
                           </div>
                           <div class="col md-6">
                               <b>Anesthesiologist: </b>
@@ -260,28 +260,28 @@
 
                       <div class="row pb-2">
                           <div class="col md-6">
-                              <b>Category: </b>{{ record.category }}
+                              <b>Category: </b>{{ record.category | default_if_none:"" }}
                           </div>
                           <div class="col md-6">
-                              <b>Procedure: </b>{{ record.procedure }}
+                              <b>Procedure: </b>{{ record.procedure | default_if_none:"" }}
                           </div>    
                       </div>
 
                       <div class="row pb-2">
                           <div class="col md-6">
-                              <b>SWAB: </b>{{ record.swab }}
+                              <b>SWAB: </b>{{ record.swab | default_if_none:"" }}
                           </div>
                           <div class="col md-6">
-                              <b>Ended: </b>{{ record.ended }}
+                              <b>Ended: </b>{{ record.ended | default_if_none:"" }}
                           </div>    
                       </div>
 
                       <div class="row pb-2">
                           <div class="col md-6">
-                              <b>Pathway: </b>{{ record.pathway }}
+                              <b>Pathway: </b>{{ record.pathway | default_if_none:"" }}
                           </div>
                           <div class="col md-6">
-                              <b>Endorsed: </b>{{ record.endorsed }}
+                              <b>Endorsed: </b>{{ record.endorsed | default_if_none:"" }}
                           </div>    
                       </div>
 
@@ -289,37 +289,39 @@
                           <div class="col md-6">
                               <b>Schedule Time: </b>
                                   {% if record.is_emergency %} 
-                                      {{record.is_emergency}} 
+                                      EMERGENCY
+                                  {% elif record.schedule_time_from is None and record.schedule_time_to is None %}
+                                  
                                   {% else %}
                                       {{record.schedule_time_from}} to {{record.schedule_time_to}}
                                   {% endif %}
                           </div>
                           <div class="col md-6">
-                              <b>Intra: </b>{{ record.intra }}
+                              <b>Intra: </b>{{ record.intra | default_if_none:"" }}
                           </div>    
                       </div>
 
                       <div class="row pb-2">
                           <div class="col md-6">
-                              <b>Received: </b>{{ record.received }}
+                              <b>Received: </b>{{ record.received | default_if_none:"" }}
                           </div>
                           <div class="col md-6">
-                              <b>Unit: </b>{{ record.unit_after }}                               
+                              <b>Unit: </b>{{ record.unit_after | default_if_none:"" }}                               
                           </div>    
                       </div>
 
                       <div class="row pb-2">
                           <div class="col md-6">
-                              <b>Started: </b>{{ record.started }}
+                              <b>Started: </b>{{ record.started | default_if_none:"" }}
                           </div>
                           <div class="col md-6">
-                              <b>Remarks: </b>{{ record.remarks }}
+                              <b>Remarks: </b>{{ record.remarks | default_if_none:"" }}
                           </div>    
                       </div>
 
                       <div class="row pb-2">
                           <div class="col md-6">
-                              <b>PRE-OP: </b>{{ record.preop }}
+                              <b>PRE-OP: </b>{{ record.preop | default_if_none:"" }}
                           </div>
                           <div class="col md-6">
                               <b>Nurse: </b>                                        
@@ -335,34 +337,34 @@
 
                       <div class="row pb-2">
                           <div class="col md-6">
-                              <b>COD: </b>{{ record.cod }}
+                              <b>COD: </b>{{ record.cod | default_if_none:"" }}
                           </div>
                           <div class="col md-6">
-                              <b>TPI: </b>{{ record.tpi }}
+                              <b>TPI: </b>{{ record.tpi | default_if_none:"" }}
                           </div>    
                       </div>
 
                       <div class="row pb-2">
                           <div class="col md-6">
-                              <b>ER Door: </b>{{ record.er_door }}
+                              <b>ER Door: </b>{{ record.er_door | default_if_none:"" }}
                           </div>
                           <div class="col md-6">
-                              <b>Post: </b>{{ record.post }}
+                              <b>Post: </b>{{ record.post | default_if_none:"" }}
                           </div>    
                       </div>
 
                       <div class="row pb-2">
                           <div class="col md-6">
-                              <b>Acti: </b>{{ record.acti }}
+                              <b>Acti: </b>{{ record.acti | default_if_none:"" }}
                           </div>
                           <div class="col md-6">
-                              <b>CVL: </b>{{ record.cvl }}
+                              <b>CVL: </b>{{ record.cvl | default_if_none:"" }}
                           </div>    
                       </div>
 
                       <div class="row pb-2">
                           <div class="col md-6">
-                              <b>Wiring: </b>{{ record.wiring }}
+                              <b>Wiring: </b>{{ record.wiring | default_if_none:"" }}
                           </div>
                       </div>
                   </div>

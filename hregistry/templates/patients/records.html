@@ -52,17 +52,17 @@
             {% for month,month_name in months.items %}
             
             {%if active_year and month_today == month%}
-                <a class="nav-link text-danger active" id="{{month}}-tab"
+                <a class="nav-link active" id="{{month}}-tab"
                     data-bs-toggle="tab" data-bs-target="#{{month}}" type="button" role="tab" aria-controls="{{month}}"
                     aria-selected="true">{{month_name}}
                 </a>
             {%elif not active_year and forloop.first%}
-                <a class="nav-link text-danger active" id="{{month}}-tab"
+                <a class="nav-link active" id="{{month}}-tab"
                     data-bs-toggle="tab" data-bs-target="#{{month}}" type="button" role="tab" aria-controls="{{month}}"
                     aria-selected="true">{{month_name}}
                 </a>
             {%else%}
-                <a class="nav-link text-danger" id="{{month}}-tab"
+                <a class="nav-link" id="{{month}}-tab"
                     data-bs-toggle="tab" data-bs-target="#{{month}}" type="button" role="tab" aria-controls="{{month}}"
                     aria-selected="false">{{month_name}}
                 </a>

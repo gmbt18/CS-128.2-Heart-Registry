@@ -1,3 +1,19 @@
 .not-important{
     display: none;
 }
+
+nav .nav-tabs{
+    background-color: #dc3545;
+}
+
+nav .nav-link{
+    color: white;
+}
+
+nav .nav-link:hover{
+    color: white;
+}
+
+/* nav .nav-tabs .nav-link {
+    background-color: #dc3545;
+} */

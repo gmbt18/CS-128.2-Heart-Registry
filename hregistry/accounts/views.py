@@ -1,7 +1,8 @@
 from multiprocessing import context
 from django.shortcuts import render, redirect
 from django.contrib import messages
-from django.http import HttpResponseRedirect
+from django.http import HttpResponseRedirect, JsonResponse
+from django.template.loader import render_to_string
 from django.contrib.auth import authenticate, login, logout ,update_session_auth_hash
 from django.contrib.auth.models import Group
 from django.contrib.auth.decorators import login_required
@@ -117,6 +118,17 @@ def manageUsers(request):
     return render(request,"accounts/users.html",context)
 
 
+#update the table asynchronously
+def users(request):
+    data = dict()
+    if request.method == 'GET':
+        users = AuthUser.objects.exclude(user_type=None)
+        data['table'] = render_to_string(
+            'accounts/user-table.html',
+            {'users': users},
+            request=request
+        )
+        return JsonResponse(data)
 
 #edit user modal
 def editUser(request,pk):

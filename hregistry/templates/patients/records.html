@@ -101,168 +101,124 @@
                 </div>
 
                 <div class="modal-body p-3">
-            
 
-                    <div class="row">
-
+                    <div class="row pb-3">
                         <div class='col-3'>
                             {{record_form.date | as_crispy_field}}
                         </div>
-                        <div class='col-3'>
-                            {{record_form.hospital | as_crispy_field}}
-                        </div>
-    
-                    </div>
-
-
-                    <div class="row">
-
-                        <div class="col-3">
+                        <div class='col-4'>
                             {{record_form.first_name | as_crispy_field}}
                         </div>
-                        <div class="col-1">
+                        <div class='col-1'>
                             {{record_form.middle_initial | as_crispy_field}}
                         </div>
-                        <div class="col-3">
+                        <div class='col-4'>
                             {{record_form.last_name | as_crispy_field}}
+                        </div>
+                    </div>
+
+                    <div class="row pb-3">
+                        <div class="col-2">
+                            {{record_form.hospital | as_crispy_field}}
                         </div>
                         <div class="col-2">
                             {{record_form.age | as_crispy_field}}
                         </div>
-                        <div class="col-1">
+                        <div class="col-2">
                             {{record_form.sex | as_crispy_field}}
                         </div>
-
-                    </div>
-
-                    <br>
-
-                    <div class="row">
-
-                        <div class="col-3">
+                        <div class="col-2">
                             {{record_form.unit_before | as_crispy_field}}
                         </div>
-                        <div class="col-3">
+                        <div class="col-2">
                             {{record_form.category | as_crispy_field}}
                         </div>
                         <div class="col-2">
                             {{record_form.swab | as_crispy_field}}
                         </div>
-
                     </div>
 
-                    <br>
-
-                    <div class="row">
-
+                    <div class="row pb-3">
+                        <div class="col-2">
+                            {{record_form.unit_before | as_crispy_field}}
+                        </div>
                         <div class="col-2">
                             {{record_form.pathway | as_crispy_field}}
                         </div>
                         <div class="col-2">
                             {{record_form.is_emergency | as_crispy_field}}
                         </div>
-                        <div class="col-3">
+                        <div class='col-3'>
                             {{record_form.schedule_time_from | as_crispy_field}}
                         </div>
-                        <div class="col-3">
+                        <div class='col-3'>
                             {{record_form.schedule_time_to | as_crispy_field}}
                         </div>
-
                     </div>
 
-                    <br>
+                    <div class="row pb-3">
 
-                    <div class="row">
-
-                        <div class="col-2">
+                        <div class="col-3">
                             {{record_form.received | as_crispy_field}}
                         </div>
-                        <div class="col-2">
+                        <div class="col-3">
                             {{record_form.started | as_crispy_field}}
                         </div>
-                        <div class="col-2">
+                        <div class="col-3">
                             {{record_form.er_door | as_crispy_field}}
                         </div>
-                        <div class="col-2">
+                        <div class="col-3">
                             {{record_form.acti | as_crispy_field}}
                         </div>
-                        <div class="col-2">
+                    </div>
+
+                    <div class="row pb-3">
+                        <div class="col-3">
                             {{record_form.wiring | as_crispy_field}}
                         </div>
-                        <div class="col-2">
+                        <div class="col-3">
                             {{record_form.balloon | as_crispy_field}}
                         </div>
-
-                    </div>
-
-                    <br><br>
-
-                    <div class="row">
-
-                        <div class="col-5">
+                        <div class="col-3">
                             {{record_form.dx | as_crispy_field}}
                         </div>
-                        <div class="col-5">
+                        <div class="col-3">
                             {{record_form.procedure | as_crispy_field}}
                         </div>
-
                     </div>
 
-                    <br>
-
-                    <div class="row">
-
-                        <div class="col">
+                    <div class="row pb-3">
+                        <div class="col-4">
                             {{record_form.angiographer | as_crispy_field}}
                         </div>
-                        <div class="col">
+                        <div class="col-4">
                             {{record_form.anesthesiologist | as_crispy_field}}
                         </div>
-
+                        <div class="col-4">
+                            {{record_form.nurse | as_crispy_field}}
+                        </div>
                     </div>
 
-                    <br>
-
-                    <div class="row">
-
+                    <div class="row pb-3">
                         <div class="col-3">
                             {{record_form.ended | as_crispy_field}}
                         </div>
                         <div class="col-3">
                             {{record_form.endorsed | as_crispy_field}}
                         </div>
-                        <div class="col-4">
+                        <div class="col-3">
                             {{record_form.unit_after | as_crispy_field}}
                         </div>
-
-                    </div>
-
-                    <br>
-
-                    <div class="row">
-
-                        <div class="col-9">
-                            {{record_form.remarks | as_crispy_field}}
-                        </div>
-                        <div class="col-2">
+                        <div class="col-3">
                             {{record_form.tpi | as_crispy_field}}
                         </div>
-
                     </div>
 
-                    <br>
-
-                    <div class="row">
-
+                    <div class="row pb-3">
                         <div class="col">
-                            {{record_form.nurse | as_crispy_field}}
+                            {{record_form.remarks | as_crispy_field}}
                         </div>
-
                     </div>
-
-                    <br><br>
-    
-                </div>
                 
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>

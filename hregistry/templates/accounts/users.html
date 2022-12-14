@@ -16,75 +16,69 @@
 </div>
 
 <div class = "container w-90">
-  
-  <h2 class="py-4 px-4">Manage Users</h2>
-  <form method="POST" action="">
-    {% csrf_token %}
-    <div class="row">
-        <div class="col-md-4 ">
-            <label class="form-label">User Type</label>
-            <select class="form-select" id="role" name="role">
-                <option value="none">--------</option>
-                <option value="nurse">Nurse</option>
-                <option value="doctor">Doctor</option>
-                <option value="medtech">Medtech</option>
-                <option value="radtech">Radtech</option>
-            </select>
+  <br><br>
+  <div class= "row px-4 pb-3 shadow-sm border" style="border-radius: 20px;">
+    <h2 class="py-4"> User Management</h2>
+    <form method="POST" action="">
+      {% csrf_token %}
+      <div class="row">
+          <div class="col-md-4 ">
+              <!-- <label class="form-label">User Type</label> -->
+              <select class="form-select" id="role" name="role">
+                  <option value="none">--------</option>
+                  <option value="nurse">Nurse</option>
+                  <option value="doctor">Doctor</option>
+                  <option value="medtech">Medtech</option>
+                  <option value="radtech">Radtech</option>
+              </select>
             
-        </div>
-        <div class="col-md-4 mt-4 pt-2">
-          <button type="submit" class='btn btn-success'> Filter</button>
-        </div>
-    </div>
-  </form>
-    
-  <div class="d-flex flex-row-reverse bd-highlight">
-    <button class='btn btn-warning' data-bs-toggle="modal" data-bs-target="#addUser"><i class="fa-solid fa-plus"></i> Add User</button>
-  </div>
-  {% include "accounts/user-table.html" %}
-
-  <form method = "POST">
-    {% csrf_token %}
-    <div class="modal fade" id="addUser" tab-index="-1">
-        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
-          <div class="modal-content">
-              <div class="modal-header">
-                  <h5>Add User</h5>
-                  <button type="button" class="btn btn-close" data-bs-dismiss="modal"></button>
-              </div>
-              <div class="modal-body">
-                
-                {{form.user_type | as_crispy_field}}
-                {{form.first_name | as_crispy_field}}   
-            
-          
-                {{form.last_name | as_crispy_field}}
-        
-      
-                {{form.username| as_crispy_field}}
-                
-    
-                {{form.email | as_crispy_field}}   
-        
-                {{form.password1 | as_crispy_field}}
-        
-        
-                {{form.password2 | as_crispy_field}}
-
-                     
-                 
-            
-              </div>
-              <div class="modal-footer">
-                  <!-- link to archive here -->
-                  <button class="btn btn-success" type='submit'>Add</button>
-                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"><i class="fa-solid fa-x"></i> Cancel</button>
-              </div>
           </div>
-        </div>
-    </div> 
-  </form>
-    
+          <div class="col-md-4">
+            <button type="submit" class='btn btn-warning'>Filter</button>
+          </div>
+      </div>
+    </form>
+      
+    <div class="d-flex flex-row-reverse bd-highlight">
+      <button class='btn btn-success' data-bs-toggle="modal" data-bs-target="#addUser"><i class="fa-solid fa-plus"></i> Add User</button>
+    </div>
+    <br><br>
+    {% include "accounts/user-table.html" %}
+
+    <form method = "POST">
+      {% csrf_token %}
+      <div class="modal fade" id="addUser" tab-index="-1">
+          <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5>Add User</h5>
+                    <button type="button" class="btn btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                  
+                  {{form.user_type | as_crispy_field}}
+                  {{form.first_name | as_crispy_field}}
+                  <br>   
+                  {{form.last_name | as_crispy_field}}
+                  <br>
+                  {{form.username| as_crispy_field}}
+                  <br>
+                  {{form.email | as_crispy_field}}      
+                  <br>     
+                  {{form.password1 | as_crispy_field}}       
+                  {{form.password2 | as_crispy_field}}
+
+                </div>
+                <div class="modal-footer">
+                    <!-- link to archive here -->
+                    <button class="btn btn-success" type='submit'>Add</button>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"><i class="fa-solid fa-x"></i> Cancel</button>
+                </div>
+            </div>
+          </div>
+      </div> 
+    </form>
+</div>
 </div>
 
 

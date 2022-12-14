@@ -136,14 +136,17 @@ def addStaffPage(request):
 # csv export
 def exportToCSV(request):
     records = Record.objects.all()
-    response = HttpResponse()
+
+    response = HttpResponse(content_type='text/csv')
     response['Content-Disposition'] = 'attachment; filename=records.csv'
+
     writer = csv.writer(response)
     writer.writerow(['DATE', 'HOSPITAL', 'FIRST NAME', 'LAST NAME', 'MIDDLE INITIAL', 'AGE', 'SEX', 'UNIT BEFORE', 'CATEGORY', 'SWAB', 'PATHWAY', 'IS EMERGENCY', 'SCHEDULE TIME FROM', 'SCHEDULE TIME TO', 'RECEIVED', 'STARTED', 'PREOP', 'COD', 'ER DOOR', 'ACTI', 'WIRING', 'BALLOON', 'DTW', 'DTB', 'DX', 'ANGIOGRAPHER', 'ANESTHESIOLOGIST', 'PROCEDURE', 'ENDED', 'ENDORSED', 'INTRA', 'UNIT AFTER', 'REMARKS', 'NURSE', 'TPI', 'POST', 'CVL'])
-    record_fields = records.values_list('date', 'hospital', 'first_name', 'last_name', 'middle_initial', 'age', 'sex', 'unit_before', 'category', 'swab', 'pathway', 'is_emergency', 'schedule_time_from', 'schedule_time_to', 'received', 'started', 'preop', 'cod', 'er_door', 'acti', 'wiring', 'balloon', 'dtw', 'dtb', 'dx', 'angiographer', 'anesthesiologist', 'procedure', 'ended', 'endorsed', 'intra', 'unit_after', 'remarks', 'nurse', 'tpi', 'post', 'cvl')
     
-    for record in record_fields:
-        writer.writerow(record)
+    for record in records:
+        writer.writerow(
+            [record.date, record.hospital, record.first_name, record.last_name, record.middle_initial, record.age, record.sex, record.unit_before, record.category, record.swab, record.pathway, record.is_emergency, record.schedule_time_from, record.schedule_time_to, record.received, record.started, record.preop, record.cod, record.er_door, record.acti, record.wiring, record.balloon, record.dtw, record.dtb, record.dx, '|'.join(a.user.first_name for a in record.angiographer.all()), '|'.join(a.user.first_name for a in record.anesthesiologist.all()), record.procedure, record.ended, record.endorsed, record.intra, record.unit_after, record.remarks, '|'.join(n.user.first_name for n in record.nurse.all()), record.tpi, record.post, record.cvl]
+            )
 
     return response
 

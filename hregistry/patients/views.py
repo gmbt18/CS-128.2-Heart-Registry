@@ -5,7 +5,8 @@ from django.contrib.auth import authenticate, login, logout ,update_session_auth
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponse,HttpResponseRedirect
 from django.urls import reverse_lazy,reverse
-
+import io
+import xlsxwriter
 
 from bootstrap_modal_forms.generic import BSModalDeleteView
 
@@ -134,20 +135,65 @@ def addStaffPage(request):
 # Create function for patient filter
 
 # csv export
-def exportToCSV(request):
-    records = Record.objects.all()
+# def exportToCSV(request):
+#     records = Record.objects.all()
 
-    response = HttpResponse(content_type='text/csv')
-    response['Content-Disposition'] = 'attachment; filename=records.csv'
+#     response = HttpResponse(content_type='text/csv')
+#     response['Content-Disposition'] = 'attachment; filename=records.csv'
 
-    writer = csv.writer(response)
-    writer.writerow(['DATE', 'HOSPITAL', 'FIRST NAME', 'LAST NAME', 'MIDDLE INITIAL', 'AGE', 'SEX', 'UNIT BEFORE', 'CATEGORY', 'SWAB', 'PATHWAY', 'IS EMERGENCY', 'SCHEDULE TIME FROM', 'SCHEDULE TIME TO', 'RECEIVED', 'STARTED', 'PREOP', 'COD', 'ER DOOR', 'ACTI', 'WIRING', 'BALLOON', 'DTW', 'DTB', 'DX', 'ANGIOGRAPHER', 'ANESTHESIOLOGIST', 'PROCEDURE', 'ENDED', 'ENDORSED', 'INTRA', 'UNIT AFTER', 'REMARKS', 'NURSE', 'TPI', 'POST', 'CVL'])
+#     writer = csv.writer(response)
+#     writer.writerow(['DATE', 'HOSPITAL', 'FIRST NAME', 'LAST NAME', 'MIDDLE INITIAL', 'AGE', 'SEX', 'UNIT BEFORE', 'CATEGORY', 'SWAB', 'PATHWAY', 'IS EMERGENCY', 'SCHEDULE TIME FROM', 'SCHEDULE TIME TO', 'RECEIVED', 'STARTED', 'PREOP', 'COD', 'ER DOOR', 'ACTI', 'WIRING', 'BALLOON', 'DTW', 'DTB', 'DX', 'ANGIOGRAPHER', 'ANESTHESIOLOGIST', 'PROCEDURE', 'ENDED', 'ENDORSED', 'INTRA', 'UNIT AFTER', 'REMARKS', 'NURSE', 'TPI', 'POST', 'CVL'])
     
-    for record in records:
-        writer.writerow(
-            [record.date, record.hospital, record.first_name, record.last_name, record.middle_initial, record.age, record.sex, record.unit_before, record.category, record.swab, record.pathway, record.is_emergency, record.schedule_time_from, record.schedule_time_to, record.received, record.started, record.preop, record.cod, record.er_door, record.acti, record.wiring, record.balloon, record.dtw, record.dtb, record.dx, '|'.join(a.user.first_name for a in record.angiographer.all()), '|'.join(a.user.first_name for a in record.anesthesiologist.all()), record.procedure, record.ended, record.endorsed, record.intra, record.unit_after, record.remarks, '|'.join(n.user.first_name for n in record.nurse.all()), record.tpi, record.post, record.cvl]
-            )
+#     for record in records:
+#         writer.writerow(
+#             [record.date, record.hospital, record.first_name, record.last_name, record.middle_initial, record.age, record.sex, record.unit_before, record.category, record.swab, record.pathway, record.is_emergency, record.schedule_time_from, record.schedule_time_to, record.received, record.started, record.preop, record.cod, record.er_door, record.acti, record.wiring, record.balloon, record.dtw, record.dtb, record.dx, '|'.join(a.user.first_name for a in record.angiographer.all()), '|'.join(a.user.first_name for a in record.anesthesiologist.all()), record.procedure, record.ended, record.endorsed, record.intra, record.unit_after, record.remarks, '|'.join(n.user.first_name for n in record.nurse.all()), record.tpi, record.post, record.cvl]
+#             )
 
+#     return response
+
+def exportToCSV(request,year):
+    output = io.BytesIO()
+    months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
+    filename = "heart_registry_report_"+str(year)+".xlsx"
+
+    workbook = xlsxwriter.Workbook(output, {'in_memory': True})
+    
+    cellformat = workbook.add_format()
+    cellformat.set_center_across()
+    dateformat = workbook.add_format({'num_format': 'dd/mm/yy'})
+    timeformat = workbook.add_format({'num_format': '[$-en-US]h:mm AM/PM;@'})
+    durationformat = workbook.add_format({'num_format': 'h:mm;@'})
+    for m in months:
+        sheet = workbook.add_worksheet(m)
+        sheet.set_column(0,40,10, cell_format=cellformat,options=None)
+        sheet.set_column(0,0, 8, cell_format=dateformat,options=None)
+        sheet.set_column(12,21, 10, cell_format=timeformat,options=None)
+        sheet.set_column(16,17, 10, cell_format=durationformat,options=None)
+        sheet.set_column(22,23, 10, cell_format=durationformat,options=None)
+        sheet.set_column(30,30, 10, cell_format=durationformat,options=None)
+        sheet.set_column(34,34, 10, cell_format=durationformat,options=None)
+        sheet.set_column(28,29, 10, cell_format=timeformat,options=None)
+        sheet.set_column(2,3, 17.5, cell_format=None,options=None)
+
+        col=0
+        header = ['DATE', 'HOSPITAL', 'FIRST NAME', 'LAST NAME', 'MIDDLE INITIAL', 'AGE', 'SEX', 'UNIT BEFORE', 'CATEGORY', 'SWAB', 'PATHWAY', 'IS EMERGENCY', 'SCHEDULE TIME FROM', 'SCHEDULE TIME TO', 'RECEIVED', 'STARTED', 'PREOP', 'COD', 'ER DOOR', 'ACTI', 'WIRING', 'BALLOON', 'DTW', 'DTB', 'DX', 'ANGIOGRAPHER', 'ANESTHESIOLOGIST', 'PROCEDURE', 'ENDED', 'ENDORSED', 'INTRA', 'UNIT AFTER', 'REMARKS', 'NURSE', 'TPI', 'POST', 'CVL']
+        for h in header:
+            sheet.write(0,col,h)
+            col += 1
+        row = 1
+        records = Record.objects.filter(date__year = year)
+        for record in records:
+            if record.date.strftime("%B") == m:
+                record_values = [record.date, record.hospital, record.first_name, record.last_name, record.middle_initial, record.age, record.sex, record.unit_before, record.category, record.swab, record.pathway, record.is_emergency, record.schedule_time_from, record.schedule_time_to, record.received, record.started, record.preop, record.cod, record.er_door, record.acti, record.wiring, record.balloon, record.dtw, record.dtb, record.dx, '|'.join(a.user.first_name for a in record.angiographer.all()), '|'.join(a.user.first_name for a in record.anesthesiologist.all()), record.procedure, record.ended, record.endorsed, record.intra, record.unit_after, record.remarks, '|'.join(n.user.first_name for n in record.nurse.all()), record.tpi, record.post, record.cvl]
+                col = 0
+                for val in record_values:
+                    sheet.write(row, col, val)
+                    col += 1
+                row += 1
+    workbook.close()
+    output.seek(0)
+    response = HttpResponse(output.read(), content_type="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet")
+    response['Content-Disposition'] = 'attachment; filename='+ filename
+    output.close()
     return response
-
 # Create function for pdf export

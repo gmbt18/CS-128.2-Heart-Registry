@@ -28,7 +28,7 @@ urlpatterns = [
     path('records/<int:year>', views.records, name="records"),
     path('records/edit/<str:id>',views.editRecordPage,name="editRecord"),
     path('records/delete/<str:id>', views.removeRecord, name="removeRecord"),
-    path('download-records/',views.exportToCSV,name="exportToCSV"),
+    path('download-records/<int:year>',views.exportToCSV,name="exportToCSV"),
 ]
 
 if settings.DEBUG:

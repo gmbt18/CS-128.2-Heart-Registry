@@ -5,7 +5,8 @@ from django.http import HttpResponseRedirect
 from django.contrib.auth import authenticate, login, logout ,update_session_auth_hash
 from django.contrib.auth.models import Group
 from django.contrib.auth.decorators import login_required
-from django.http import HttpResponse
+from django.http import HttpResponse, JsonResponse
+from django.template.loader import render_to_string
 from django.urls import reverse_lazy,reverse
 from django.contrib.auth.forms import PasswordChangeForm
 
@@ -130,6 +131,16 @@ def editProfile(request):
     context={'form':form}
     return render(request,'accounts/edit-user.html',context)
 
+def users(request):
+    data = dict()
+    if request.method == 'GET':
+        users = AuthUser.objects.exclude(username='admin')
+        data['table'] = render_to_string(
+            'accounts/user-table.html',
+            {'users': users},
+            request=request
+        )
+        return JsonResponse(data)
 
 #edit user modal
 def editUser(request,pk):

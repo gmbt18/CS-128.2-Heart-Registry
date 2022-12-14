@@ -331,23 +331,11 @@
             $(this).modalForm({
                 modalID:'#modal',
                 formURL: $(this).data("form-url"),
-                asyncUpdate: true,
-                asyncSettings: {
-                    closeOnSubmit: false,
-                    successMessage: asyncSuccessMessageUpdate,
-                    dataUrl: "records/",
-                    dataElementId: "#record-table",
-                    dataKey: "table",
-                    addModalFormFunction: reinstantiateModalForms
-                }
             });
           });
         }
         updateRecordModalForm();
-    
-        function reinstantiateModalForms(){
-          updateRecordModalForm();
-        }
+
     })
     
 </script>

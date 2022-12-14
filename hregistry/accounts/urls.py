@@ -26,6 +26,7 @@ urlpatterns = [
     path('profile/edit',views.editProfile,name="editProfile"),
     path('profile/edit/change-pass',views.changeAdminPass,name="changeAdminPass"),
     path('manage-users/',views.manageUsers, name='manageUsers'),
+    path('manage-users/users/',views.users,name='users'),
     path('manage-users/edit/<int:pk>',views.editUser, name='editUser'),
     path('manage-users/edit/change-pass/<int:pk>/',views.changePass,name='changePass'),
      path('delete/<int:pk>',views.deleteUser.as_view(), name='deleteUser'),
